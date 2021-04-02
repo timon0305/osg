@@ -1,0 +1,103 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Training Program for Mon, 7th August 2018</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <div  class="day">
+    <!-- table 1:1 start -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Body part</th>
+          <th>Exercise</th>
+          <th>Set</th>
+          <th>(Target) Reps</th>
+          <th>(Target) Reps to failure</th>
+          <th>Load <br>(% of 1 RM)</th>
+          <th>(Target) Volume Load</th>
+          <th>Method</th>
+          <th>Tempo (sec)<br>(down-hold-up)</th>
+          <th>Rest Period (min:sec)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template [ngIf]="data.length">
+          <ng-container *ngFor="let formData of data[cur_week][cur_day].body_parts;let m=index" >
+            <tr [attr.data-index]="0" [attr.data-exercise-index]="0" [attr.data-bodypart-index]="m" [attr.data-week-index]="cur_week" [attr.data-day-index]="cur_day">
+              <td [attr.rowspan]="formData.row" style="background: rgb(181, 239, 255);">{{formData.name}}</td>
+              <td [attr.rowspan]="formData.exercises[0].row">{{formData.exercises[0].name}}</td>
+              <td>1</td>
+              <td>{{formData.exercises[0].data[0].reps}}</td>
+              <td>{{formData.exercises[0].data[0].rtf}}</td>
+              <td>{{formData.exercises[0].data[0].rm}}</td>
+              <td>{{(formData.exercises[0].data[0].rm * formData.exercises[0].data[0].reps).toFixed(0)}}</td>
+              <td>{{options[formData.exercises[0].data[0].method]}}</td>
+              <td>{{formData.exercises[0].data[0].tempo}}</td>
+              <td>{{formData.exercises[0].data[0].rest}}</td>
+            </tr>
+            <ng-container *ngFor="let item of formData.exercises[0].data | slice : 1; let i = index">
+              <tr [attr.data-index]="i+1" [attr.data-exercise-index]="0" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                <td>{{i+2}}</td>
+                <td>{{item.reps}}</td>
+                <td>{{item.rtf}}</td>
+                <td>{{item.rm}}</td>
+                <td>{{(item.rm * item.reps).toFixed(0)}}</td>
+                <td>{{options[item.method]}}</td>
+                <td>{{item.tempo}}</td>
+                <td>{{item.rest}}</td>
+              </tr>
+            </ng-container>
+            <ng-container *ngFor="let exercise of formData.exercises | slice:1; let n=index">
+              <tr [attr.data-index]="0" [attr.data-exercise-index]="n+1" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                <td [attr.rowspan]="exercise.row">{{exercise.name}}</td>
+                <td>1</td>
+                <td>{{exercise.data[0].reps}}</td>
+                <td>{{exercise.data[0].rtf}}</td>
+                <td>{{exercise.data[0].rm}}</td>
+                <td>{{(exercise.data[0].rm * exercise.data[0].reps).toFixed(0)}}</td>
+                <td>{{options[exercise.data[0].method]}}</td>
+                <td>{{exercise.data[0].tempo}}</td>
+                <td>{{exercise.data[0].rest}}</td>
+              </tr>
+              <ng-container *ngFor="let item of exercise.data | slice : 1; let i = index">
+                <tr [attr.data-index]="i+1" [attr.data-exercise-index]="n+1" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                  <td>{{i+2}}</td>
+                  <td>{{item.reps}}</td>
+                  <td>{{item.rtf}}</td>
+                  <td>{{item.rm}}</td>
+                  <td>{{(item.rm * item.reps).toFixed(0)}}</td>
+                  <td>{{options[item.method]}}</td>
+                  <td>{{item.tempo}}</td>
+                  <td>{{item.rest}}</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </tbody>
+      <tfoot>
+        <ng-template [ngIf]="data.length">
+          <ng-container *ngFor="let bodypart of data[cur_week][cur_day].body_parts;let m=index" >
+            <tr>
+              <td>{{bodypart.name}}</td>
+              <td colspan="2">Total Volume</td>
+              <td>{{bodypart.totalReps}}</td>
+              <td>Average Intensity</td>
+              <td>{{(bodypart.totalRm / bodypart.totalExercise).toFixed(2)}}</td>
+              <td>Tot. Volume Load</td>
+              <td>{{bodypart.totalLoad.toFixed(2)}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </tfoot>
+    </table>
+    <!-- table 1:1 end -->
+  </div>
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+</div> -->

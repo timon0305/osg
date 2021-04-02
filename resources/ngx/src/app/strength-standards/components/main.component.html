@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="main-title main-strength-standards">
+        <div class="img-section">
+            <img src="images/icons/strength-standards.png" alt="strength-standards"/>
+        </div>
+        <h1>STRENGTH STANDARDS</h1>
+        <span>HOW STRONG ARE YOU?</span>
+        <p>Strength standards are objective benchmarks that shows how strong you are compared to a larger group, in this case compared to other strength athletes at your body weight. It is most common to measure 1 repetition maximum, which is the maximum amount of weight that a person can possible lift for one repetition with maximum effort. Strength standards are beneficial when setting goals and tracking your progress. <a (click)="toggle()">{{link_name}}</a></p>
+        <div *ngIf="isShow">
+            <p>The Program designer makes strength programs with general percentage of 1 RM load values for each set. Optimal strength gains uses your 1 RM values to replace these and calculate your personal kg loads on every set. This also gives us the opportunity to calculate your Target Volume Load which is compared with your Performed Volume Load (volume load: total set x reps x kg per session). This will reveal how well you are adopting to the program on a daily basis.</p>
+            <p>In the programs first and last week you will perform a test AMRAP set in the test exercise, to calculate your 1 RM. By comparing the pre- and post 1 RM values, we can calculate your results or percentage increase.  The 1 RM test results are saved in the test exercises Strength Standard table, and the percentage increase value is saved in the programs Experience bank.</p>
+        </div>
+    </div>
+    <osg-enter-information [status]='status'></osg-enter-information>
+    <osg-strength-standards-exercise-table></osg-strength-standards-exercise-table>
+</div>
+

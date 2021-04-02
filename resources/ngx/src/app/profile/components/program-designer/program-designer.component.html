@@ -1,0 +1,23 @@
+<ngx-spinner></ngx-spinner>
+
+<div [ngClass]="current_set=='profile'?'active slide_page':'slide_page'">
+    <a class="slide_button next" (click)="NextPage()">
+        <img src="images/icons/arrow-right.png">
+    </a>
+    <osg-profile-about-me profile="Program Designer" [text]="applicationUser.profile?applicationUser.profile.description:'Sample description'" [education]="applicationUser.profile?applicationUser.profile.education:'Sample education text'" [specialities]="applicationUser.profile?applicationUser.profile.special:'Sample special text'" [experience]="applicationUser.profile?applicationUser.profile.experience:'Sample experience text'" [country]="applicationUser.profile?applicationUser.profile.country:'Sample country text'" [email]="applicationUser.profile.email"></osg-profile-about-me>
+    <osg-news-feed [applicationUser]="applicationUser"></osg-news-feed>
+</div>
+<div [ngClass]="current_set=='graph'?'active slide_page':'slide_page'">
+    <a class="slide_button prev" (click)="PreviousPage()">
+        <img src="images/icons/arrow-left.png">
+    </a>
+    <osg-program-designer-published-programs></osg-program-designer-published-programs>
+    <osg-program-designer-saved-programs></osg-program-designer-saved-programs>
+    <osg-program-designer-program-filter></osg-program-designer-program-filter>
+    <osg-program-designer-experience-bank></osg-program-designer-experience-bank>
+    <osg-program-designer-experience-reviews></osg-program-designer-experience-reviews>
+    <osg-program-designer-progressive-overload-graph></osg-program-designer-progressive-overload-graph>
+    <osg-program-designer-program-design></osg-program-designer-program-design>
+    <osg-program-designer-training-calendar></osg-program-designer-training-calendar>
+    <osg-get-started view="secondary" [sections]="getStartedSections"></osg-get-started>
+</div>

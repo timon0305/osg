@@ -1,0 +1,523 @@
+<div class="container desktop" *showItDevice="['tablet','desktop']">
+
+	<h1>THE WORKOUT & CALENDAR BUILDER</h1>
+	<div class="clearfix"></div>
+	<div class="row mb-4">
+		<osg-plan-builder-exercises></osg-plan-builder-exercises>
+	</div>
+	<div class="row">
+		<osg-plan-builder-workout></osg-plan-builder-workout>
+		<osg-plan-builder-calendar></osg-plan-builder-calendar>
+	</div>
+	<div class="row">
+		<div class="general-actions text-right">
+			<a (click)="onSaveProgram()" class="btn btn-black py-2 px-4"> <img src="/assets/images/icons/icon-save.svg" alt=""> SAVE
+					PROGRAM</a>
+			<a (click)="next()" class="btn btn-green-gradient btn-next py-2 pl-3 mt-3 mt-sm-0"> NEXT : PROGRESSION BUILDER</a>
+		</div>
+	</div>
+</div>
+
+<div class="container mobile" *showItDevice="['mobile']">
+   <owl-carousel-o [options]="customOptions" (changed)="getPassedData($event)" #owlCar>
+      <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+         <div class="content">
+            <div class="header">
+               <div class="nav-buttons">
+                  <a (click)="owlCarPrev(owlCar)" class="btn"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-2x"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg> </a>
+                  <a (click)="owlCarNext(owlCar)" class="btn"> NEXT </a>
+               </div>
+               <div class="section-title">
+                  <p>Workout Creation</p>
+                  <h2>Add Exercise</h2>
+               </div>
+               <div class="section-search">
+                  <i class="fa fa-search"></i>
+                  <input class="form-control" placeholder="Search: Exercises, Muscle Group" type="text">
+                  <a (click)="setting" class="btn"><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="sliders-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-sliders-v fa-w-14 fa-2x"><path fill="currentColor" d="M160 168v-48c0-13.3-10.7-24-24-24H96V8c0-4.4-3.6-8-8-8H72c-4.4 0-8 3.6-8 8v88H24c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h40v312c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8V192h40c13.3 0 24-10.7 24-24zm-32-8H32v-32h96v32zm152 160h-40V8c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v312h-40c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h40v88c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-88h40c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24zm-8 64h-96v-32h96v32zm152-224h-40V8c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v152h-40c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h40v248c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8V256h40c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24zm-8 64h-96v-32h96v32z" class=""></path></svg></a>
+               </div>
+            </div>
+            <div class="body">
+               <label>library</label>
+               <div class="item-list">
+                  <div class="item" *ngFor="let item of list">
+                     <div class="avatar">
+                        <img [src]="item.img">
+                     </div>
+                     <div class="ex-description">
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.type}}</p>
+                        <p class="group-item" >
+                           <span *ngFor="let sel of item.items">{{sel}}</span>
+                        </p>
+                     </div>
+                     <div class="btn-group">
+                        <a (click)="selectedExercise(item)" class="btn"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-plus fa-w-14 fa-2x"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path></svg></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+      <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+         <div class="content">
+            <div class="header">
+               <div class="nav-buttons">
+                  <a (click)="owlCarPrev(owlCar)" class="btn"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-2x"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg> </a>
+                  <a (click)="owlCarNext(owlCar)" class="btn"> NEXT </a>
+               </div>
+               <div class="section-title">
+                  <p>Workout Creation</p>
+                  <h2>Selected Exercises</h2>
+               </div>
+            </div>
+            <div class="body exercise">
+               <label>Selected</label>
+               <div class="item-list">
+                  <div class="item" *ngFor="let item of selected_list; let i = index;">
+                     <div class="avatar">
+                        <img [src]="item.img">
+                     </div>
+                     <div class="ex-description">
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.type}}</p>
+                        <p class="group-item" >
+                           <span *ngFor="let sel of item.items">{{sel}}</span>
+                        </p>
+                     </div>
+                     <div class="btn-group">
+                        <a class="btn checked" (click)="check(i, item)"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-2x"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+      <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+         <div class="content">
+            <div class="header">
+               <div class="nav-buttons">
+                  <a (click)="owlCarPrev(owlCar)" class="btn"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-2x"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg> </a>
+                  <a (click)="owlCarNext(owlCar)" class="btn"> NEXT </a>
+               </div>
+               <div class="section-title">
+                  <p>Calendar Builder</p>
+                  <h2>Create Workout</h2>
+               </div>
+            </div>
+            <div class="body">
+               <div class="workouts">
+                  <div class="item" *ngFor="let workout of workouts">
+                     <div class="type"><span>WORKOUT</span><div class="id">{{workout.id}}</div></div>
+                  </div>
+               </div>
+               <div class="exercise-group" *ngIf="selected_list.length > 0">
+                  <div class="exercise" *ngFor="let item of selected_list; let i=index;">
+                     <div class="set-header">
+                        <div class="avatar">
+                           <img [src]="item.img">
+                        </div>
+                        <div class="set-description">
+                           <h3>{{item.title}}</h3>
+                           <p>{{item.type}}</p>
+                           <p class="group-item" >
+                              <span *ngFor="let sel of item.items">{{sel}}</span>
+                           </p>
+                        </div>
+                        <div class="btn-group">
+                           <a [ngClass]="isCollapsed[i]?'toggler change':'toggler'" (click)="toggle(i)">
+                              <span class="bar1"></span>
+                              <span class="bar2"></span>
+                              <span class="bar3"></span>
+                           </a>
+                        </div>
+                     </div>
+                     <div [ngClass]="isCollapsed[i]?'set-items change':'set-items'">
+                        <div class="side-nav">
+                           <div class="item-title start-title">set {{current_sets[i]}} of 3</div>
+                           <div class="item-group">
+                              <ng-template #popContent>
+                                 <b>Straight set:</b> is an ordinary set where you do a set of one exercise, rest and proceed to the next set.<br>
+                                 <b>Warm up set:</b> perform one or several sets with low weight and intensity prior to your work sets.<br>
+                                 <b>Test AMRAP set:</b> is a test set where you perform as many reps as possible with maximum effort, used to calculate your one repetition maximum (1 RM).<br>
+                                 <b>Pyramid set:</b> is a collection of sets, of the same exercise, that start with a light weight and higher reps, building up to a heavier weight and fewer reps<br>
+                                 <b>Super set:</b> when doing two exercises that target opposing muscle in a row with minimal rest between them.<br>
+                                 <b>Giant set:</b> is a circuit of three or more exercises for one muscle group performed one after another with little to no rest in between.<br>
+                                 <b>Pre-exhaust set:</b> when doing an isolation or 'single-joint' exercise followed by one compound or 'multiple-joint' movement.<br>
+                                 <b>Drop set:</b> performing multiple sets of an exercise to technical failure with successively lighter loads and little to no rest.
+                              </ng-template>
+                              <div class="item">Exercise</div>
+                              <div class="item">Reps
+                                 <button type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbPopover="is how many repetitions you are aiming for.">
+                                    <img src="/images/information-ikon.png"/>
+                                 </button>
+                              </div>
+                              <div class="item">RTF</div>
+                              <div class="item">% of 1RM
+                                 <button type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbPopover="shows the working load (kg) you are aiming at.">
+                                    <img src="/images/information-ikon.png"/>
+                                 </button>
+                              </div>
+                              <div class="item">Method</div>
+                              <div class="item">Tempo (sec)</div>
+                              <div class="item multi-line">Rest Period (min : sec)</div>
+                           </div>
+                        </div>
+                        <ngx-siema [options]="options[i]" *ngIf="options.length > 0">
+                           <ngx-siema-slide *ngFor="let set of carouselData">
+                              <div [ngClass]="current_sets[i] == set.id?'active set':'set'">
+                                 <div class="item-title">{{set.title}}</div>
+                                 <div class="item-group">
+                                    <div class="item">{{set.exercise}}</div>
+                                    <div class="item">{{set.reps}}</div>
+                                    <div class="item">{{set.rtf}}</div>
+                                    <div class="item">{{set.rm}}</div>
+                                    <div class="item">{{set.method}}</div>
+                                    <div class="item">{{set.tempo}}</div>
+                                    <div class="item multi-line">{{set.rest_period}}</div>
+                                 </div>
+                              </div>
+                           </ngx-siema-slide>
+                        </ngx-siema>
+                     </div>
+                     <div class="set-footer" [ngStyle]="{display: isCollapsed[i]?'flex':'none'}">
+                        <a class="btn remove">remove set</a>
+                        <a class="btn add"><div class="icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-plus fa-w-14 fa-2x"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path></svg></div>add set</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="btn-group">
+                  <a class="btn add">new workout</a>
+                  <a class="btn save"><img alt="" src="images/save.png">save workout</a>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+      <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+         <div class="content">
+            <div class="header">
+               <div class="nav-buttons">
+                  <a (click)="owlCarPrev(owlCar)" class="btn"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-2x"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg> </a>
+                  <a (click)="owlCarNext(owlCar)" class="btn"> NEXT </a>
+               </div>
+               <div class="section-title">
+                  <p>Calendar Builder</p>
+                  <h2>Create Calendar</h2>
+               </div>
+            </div>
+            <div class="body">
+               <div class="card">
+                  <div class="card-header">
+                     <label>saved workouts</label>
+                  </div>
+                  <div class="card-content">
+                     <div class="workouts">
+                        <div class="item" *ngFor="let workout of workouts">
+                           <span>WORKOUT</span>
+                           <div class="id">{{workout.id}}</div>
+                           <span class="types" *ngFor="let item of workout.items; let i= index;"> {{item}} {{i !== workout.items.length - 1?'/':''}} </span>
+                        </div>
+                     </div>
+                     <div class="table-responsive">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                    <th>Week</th>
+                                    <th>MON</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                    <th>Sun</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>1</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>2</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>3</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>4</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>5</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>6</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>7</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>8</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>9</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>10</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>11</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>12</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>13</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>14</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>15</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>16</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>17</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>18</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>19</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>20</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td>21</td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                              <tr>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                                 <td><span class="normal"></span></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="btn-group">
+                  <a class="btn add btn-small">Remove</a>
+                  <a class="btn add-icon btn-small"><div class="icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-plus fa-w-14 fa-2x"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path></svg></div>add week</a>
+                  <a class="btn save btn-small"><img alt="" src="images/save.png">save workout</a>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+      <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+         <div class="content">
+            <div class="header">
+               <div class="nav-buttons">
+                  <a (click)="owlCarPrev(owlCar)" class="btn"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-2x"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg> </a>
+                  <a (click)="owlCarNext(owlCar)" class="btn"> NEXT </a>
+               </div>
+               <div class="section-title">
+                  <p>Calendar Builder</p>
+                  <h2>Create Calendar</h2>
+               </div>
+            </div>
+            <div class="body">
+               <div class="program">
+                  <div class="item-field">
+                     <label>saved workouts</label>
+                     <input class="form-control" placeholder="Program Name" type="text">
+                  </div>
+                  <div class="item-field">
+                     <label>category name</label>
+                     <select class="form-control" name="category">
+                        <option disabled selected value>Select category name</option>
+                        <option value="strength">Strength</option>
+                        <option value="hypertrophy">Hypertrophy</option>
+                        <option value="muscular">Muscular endurance</option>
+                        <option value="power">Power</option>
+                        <option value="mixed">Mixed</option>
+                     </select>
+                  </div>
+                  <div class="item-field">
+                     <label>training split</label>
+                     <select class="form-control" name="category">
+                        <option disabled selected value>Training split</option>
+                        <option value="1">1 split</option>
+                        <option value="2">2 split</option>
+                        <option value="3">3 split</option>
+                        <option value="4">4 split</option>
+                        <option value="5">5 split</option>
+                        <option value="6">6 split</option>
+                        <option value="7">7 split</option>
+                     </select>
+                  </div>
+                  <div class="item-field">
+                     <label>program name:</label>
+                     <textarea class="form-control" placeholder="Program description" type="text"></textarea>
+                  </div>
+               </div>
+               <div class="btn-group">
+                  <a class="btn save btn-small"><img alt="" src="images/save.png">save program</a>
+                  <a class="btn btn-green-gradient btn-small">next : progression builder</a>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+   </owl-carousel-o>
+</div>

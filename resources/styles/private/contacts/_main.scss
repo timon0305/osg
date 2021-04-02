@@ -1,0 +1,98 @@
+osg-contacts {
+    display: block;
+    width: 100%;
+    padding-top: 130px;
+    padding-bottom: 20px;
+    .main-title{
+        h1{
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 2rem;
+            font-family: $primary-font;
+        }
+        span{
+            color: #838383;
+            font-size: 1rem;
+        }
+    }
+
+    .main-card{
+        background-color: white;
+        border-left: 1px solid #cecece;
+        border-right: 1px solid #cecece;
+        border-bottom: 2px solid #ababab;
+        margin-top: 40px;
+
+        .main-card-header {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 0;
+            margin-right: 0;
+            border-bottom: 1px solid #cecece;
+            label {
+                font-family: $primary-font;
+                margin-bottom: 0px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                margin-right: 20px;
+                font-size: 15px;
+            }
+
+            span.span-tab {
+                font-size: 14px;
+                padding-bottom: 12px;
+                margin-left: 20px;
+                cursor: pointer;
+                &.active {
+                    border-bottom: 3px solid #f29900;
+                }
+
+                &:hover {
+                    border-bottom: 3px solid #f29900;
+                    color: #f29900;
+                }
+            }
+        }
+
+        .main-card-body {
+            padding: 25px;
+
+            .friend-list-card {
+                display: block;
+                border: 1px solid #cecece;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 15px;
+
+                .profile-img {
+                    display: inline-block;
+                    border-radius: 50%;
+                    width: 65px;
+                    height: 65px
+                }
+
+                & > div {
+                    display: inline-block;
+                }
+
+                a {
+                    cursor: pointer;
+                }
+
+                .more-info {
+                    float: right;
+
+                    .btn {
+                        margin-top: 12px;
+                    }
+
+                    span {
+                        font-size: 22pt;
+                        font-weight: bolder;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

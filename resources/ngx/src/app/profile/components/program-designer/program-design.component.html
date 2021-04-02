@@ -1,0 +1,59 @@
+<div class="title">
+  <div class="row">
+    <div class="col-12">
+      <h3>Program design: <span>{{first_program.name}}</span></h3>
+    </div>
+  </div>
+</div>
+<div class="table-program-design">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+          <tr>
+            <th rowspan="2">Body<br>part</th>
+            <th rowspan="2">Test<br>Exercise</th>
+            <th rowspan="2">Type of<br>exercises</th>
+            <!-- <th rowspan="2">Type of<br>exercise<br>level 2</th> -->
+            <th colspan="2" class="blue">Volume</th>
+            <th colspan="2" class="red">Intensity</th>
+            <th rowspan="2" class="green">Frequency<br>(muscle gr.<br>pr. week)</th>
+            <th rowspan="2" style="width: 20%;">Progression<br>model</th>
+            <th rowspan="2">Rest periods<br>(min-max)</th>
+            <th rowspan="2" style="width: 10%;">Tempo<br>(min-max)</th>
+          </tr>
+          <tr>
+            <th class="blue">Reps<br>(min-max)</th>
+            <th class="blue">Sets<br>(min-max)</th>
+            <th class="red">% of 1RM<br>(min-max)</th>
+            <th class="red">Reps to<br>failure<br>(min-max)</th>
+          </tr>
+          <!--  -->
+      </thead>
+      <tbody>
+        <ng-template [ngIf]="design_data.length">
+          <ng-container *ngFor="let bodypart of design_data; let i=index">
+            <tr>
+              <td >{{bodypart.name}}</td>
+              <td >{{bodypart.exercise_type.length ? bodypart.test_exercise : ''}}</td>
+              <td>{{bodypart.exercise_type.length ? drawExerciseType(bodypart.exercise_type) : ''}}</td>
+              <td class="blue">{{bodypart.exercise_type.length ? bodypart.reps_min + ' - ' + bodypart.reps_max : ''}}</td>
+              <td class="blue">{{bodypart.exercise_type.length ? bodypart.sets_min + ' - ' + bodypart.sets_max : ''}}</td>
+              <td class="red">{{bodypart.exercise_type.length ? bodypart.rm_min + ' - ' + bodypart.rm_max : ''}}</td>
+              <td class="red">{{bodypart.exercise_type.length ? bodypart.rtf_min + ' - ' + bodypart.rtf_max : ''}}</td>
+              <td class="green">{{bodypart.exercise_type.length ? bodypart.freq_min + ' - ' + bodypart.freq_max : ''}}</td>
+              <td >
+                <ng-template [ngIf]="bodypart.exercise_type.length">
+                  <select class="form-control">
+                    <option *ngFor="let option of model_option; let i=index" [value]="i">{{option}}</option>
+                  </select>
+                </ng-template>
+              </td>
+              <td >{{bodypart.exercise_type.length ? bodypart.rest_min + ' - ' + bodypart.rest_max : ''}}</td>
+              <td >{{bodypart.exercise_type.length ? bodypart.tempo_min : ''}}<br>{{bodypart.exercise_type.length ? bodypart.tempo_max : ''}}</td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>

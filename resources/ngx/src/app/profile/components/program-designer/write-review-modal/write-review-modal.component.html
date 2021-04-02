@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Write a review for {{first_program.name}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <div class="section">
+    <h6>Rate your program experience</h6>
+    <div class="rating">
+      <span (click)="rate=1" class="fa-stack" [class]="rate >= 1 ? 'fa-stack ' + rate_value[rate] : 'fa-stack'">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+      <span (click)="rate=2" class="fa-stack" [class]="rate >= 2 ? 'fa-stack ' + rate_value[rate] : 'fa-stack'">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+      <span (click)="rate=3" class="fa-stack" [class]="rate >= 3 ? 'fa-stack ' + rate_value[rate] : 'fa-stack'">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+      <span (click)="rate=4" class="fa-stack" [class]="rate >= 4 ? 'fa-stack ' + rate_value[rate] : 'fa-stack'">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+      <span (click)="rate=5" class="fa-stack" [class]="rate >= 5 ? 'fa-stack ' + rate_value[rate] : 'fa-stack'">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+      <p>{{rate + '.0'}}</p>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div  class="section">
+    <h6>Tell us about your experience</h6>
+    <textarea [(ngModel)]="review_content"></textarea>
+  </div>
+</div>
+<button (click)="close()" class="btn btn-black btn-block text-uppercase py-2 mt-3">WRITE REVIEW</button>

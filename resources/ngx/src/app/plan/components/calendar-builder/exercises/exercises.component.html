@@ -1,0 +1,74 @@
+<div class="desktop-exercise" *showItDevice="['tablet','desktop']">
+    <h2 style="height: 28px">
+      Exercises:
+      <ng-template #popTitle4Ex>
+        Choose 1 - 3 test exercises.<br>
+        In the first and last week of the program choose method Test AMRAP set for the test exercises, in order to calculate the Strength athlete's 1 repetition maximum, level and % increase (results).
+      </ng-template>
+      <i class="fa fa-info-circle"
+         placement="bottom"
+         [ngbPopover]="popTitle4Ex"
+         style="font-size: 24px;cursor: pointer"></i>
+    </h2>
+    <div class="builder-exercise">
+        <div class="left-box">
+            <div class="search-form">
+                <div class="form-group">
+                    <input class="form-control" [formControl]="keyword" (ngModelChange)="searchFunc()" placeholder="Search: Exercises, Body Parts, Target Muscles" type="text">
+                    <a class="btn btn-green-gradient" (click)="sendMessage()"> add exercise</a>
+                </div>
+            </div>
+            <div class="exercise-box">
+                <div class="exercises-list" *ngFor="let exercise_movement of exercise_data; let j = index">
+                    <h3 class="sticky-rv1">{{exercise_movement.movement}} :</h3>
+                    <div class="exercise">
+                        <figure *ngFor="let exercise of exercise_movement.data; let i = index"
+                            (click)="selectExercise($event, j, exercise.exercise_code, exercise.exercise_name, i)"
+                            draggable="true" [attr.data-target-muscles]="exercise.target_muscles" [attr.data-exercise-code]="exercise.exercise_code" [attr.data-exercise-name]="exercise.exercise_name" (dragstart)="dragExercise($event)"
+                            [ngStyle]="{'border-color':exercise.selected==1?'#f49a11':'#d8ddd1'}"
+                            >
+                            <img alt="" class="d-block"  width="100%" [attr.src]="exercise.picture" draggable="false">
+                            <div class="title" draggable="false">
+                                <h4 draggable="false">{{exercise.exercise_name}}</h4>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="item-field">
+                <label>program name:</label>
+                <input class="form-control" placeholder="Select program name" type="text" [(ngModel)]="program.name">
+            </div>
+            <div class="item-field">
+                <label>category:</label>
+                <select class="form-control" name="category"[(ngModel)]="program.category">
+                    <option disabled selected value>Select category name</option>
+                    <option value="strength">Strength</option>
+                    <option value="hypertrophy">Hypertrophy</option>
+                    <option value="muscular">Muscular endurance</option>
+                    <option value="power">Power</option>
+                    <option value="mixed">Mixed</option>
+                </select>
+            </div>
+            <div class="item-field">
+                <label>training split:</label>
+                <select class="form-control" name="split" [(ngModel)]="program.split">
+                    <option disabled selected value>Number of workouts per muscle group per week</option>
+                    <option value="1">1 split</option>
+                    <option value="2">2 split</option>
+                    <option value="3">3 split</option>
+                    <option value="4">4 split</option>
+                    <option value="5">5 split</option>
+                    <option value="6">6 split</option>
+                    <option value="7">7 split</option>
+                </select>
+            </div>
+            <div class="item-field">
+                <label>description:</label>
+                <textarea class="form-control" placeholder="Describe your program" type="text" [(ngModel)]="program.description"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

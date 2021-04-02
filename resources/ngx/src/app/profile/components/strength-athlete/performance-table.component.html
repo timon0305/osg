@@ -1,0 +1,378 @@
+<div class="title">
+  <div class="row align-items-center">
+    <div class="col-12 col-sm">
+      <h3>PERFORMANCE TABLE (YOUR RESULTS)</h3>
+    </div>
+    <div class="col-12 col-sm-auto text-right">
+      <div class="sort-box">
+        <p>PROGRAM:</p>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GVT</button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">BASE LIFTS</a>
+                <a class="dropdown-item" href="#">STARTING STRENGTH</a>
+                <a class="dropdown-item" href="#">LADDER STRENGTH</a>
+                <a class="dropdown-item" href="#">POWER BUILDING</a>
+                <a class="dropdown-item" href="#">GVT</a>
+                <a class="dropdown-item" href="#">5x5</a>
+            </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-3" *showItDevice="['tablet','desktop']">
+    <div class="col-12 col-sm-12">
+        <div class="row">
+            <div class="col-sm-3" *ngFor="let result of results">
+                <osg-strength-athlete-performance-result [title]="result.title" [type]="result.type" [value]="result.value" [color]="result.color"></osg-strength-athlete-performance-result>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *showItDevice="['mobile']">
+    <osg-strength-athlete-performance-result [title]="mobile_program_result.title" [type]="mobile_program_result.type" [value]="mobile_program_result.value" [color]="mobile_program_result.color"></osg-strength-athlete-performance-result>
+    <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let result of mobile_results">
+            <ng-template carouselSlide [width]='width==320?290:width==360?330:width==375?345:width==384?354:384'>
+                <osg-strength-athlete-performance-result [title]="result.title" [type]="result.type" [value]="result.value" [color]="result.color"></osg-strength-athlete-performance-result>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>
+
+<div class="row align-items-center sub-title">
+    <div class="col-12 col-sm">
+        <h3>LIFESTYLE (AVERAGE):</h3>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 col-sm-12">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let slider of sliders">
+                <osg-strength-athlete-performance-slider [title]="slider.title" [value]="slider.value" [color]="slider.color"></osg-strength-athlete-performance-slider>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-center sub-title">
+    <div class="col-12 col-sm">
+        <h3>variables:</h3>
+    </div>
+</div>
+<div class="row mb-3" *showItDevice="['tablet','desktop']">
+    <div class="col-12 col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="header">
+                                <th colspan="4">VARIABLE</th>
+                            </tr>
+                            <tr>
+                                <th class="type"></th>
+                                <th class="type">PRETEST:</th>
+                                <th class="type">POSTTEST:</th>
+                                <th class="type">CHANGE:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="type">body weight (kg):</td>
+                                <td>105</td>
+                                <td>105</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="type">waist-hip-ratio:</td>
+                                <td>0,97</td>
+                                <td>0,97</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="type">age (years):</td>
+                                <td>{{variables.age}}</td>
+                                <td>{{variables.age}}</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="type">injury:</td>
+                                <td><span class="no">no</span></td>
+                                <td><span class="yes">yes</span></td>
+                                <td><span class="yes">yes</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="header">
+                                <th colspan="4">FIXED</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="type"></td>
+                                <td class="type"></td>
+                            </tr>
+                            <tr>
+                                <td class="type">muscle fiber type:</td>
+                                <td>{{variables.muscle_type}}</td>
+                            </tr>
+                            <tr>
+                                <td class="type">height (cm):</td>
+                                <td>{{variables.height}}</td>
+                            </tr>
+                            <tr>
+                                <td class="type">gender:</td>
+                                <td>{{variables.gender}}</td>
+                            </tr>
+                            <tr>
+                                <td class="type"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="header">
+                                <th colspan="4">PROGRAM SUMMARY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="type fixed-width">TOTAL SESSIONS:</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td class="type fixed-width">MISSED SESSIONS:</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td class="type fixed-width">COMPLETED:</td>
+                                <td>95</td>
+                            </tr>
+                            <tr>
+                                <td class="type fixed-width">PERCENTAGE:</td>
+                                <td>95</td>
+                            </tr>
+                            <tr>
+                                <td class="type fixed-width">AUTO REGULATION:</td>
+                                <td class="p-0">
+                                    <div class="slider">
+                                        <ui-switch [(ngModel)]="auto_reg" size="small" (change)="onChangeAutoReg($event)"></ui-switch>
+                                        <label class="text-on">ON</label>
+                                        <label class="text-off">OFF</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *showItDevice="['mobile']">
+    <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide [width]='width==320?290:width==360?330:width==375?345:width==384?354:384'>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="header">
+                            <th colspan="4">VARIABLE</th>
+                        </tr>
+                        <tr>
+                            <th class="type"></th>
+                            <th class="type">PRETEST:</th>
+                            <th class="type">POSTTEST:</th>
+                            <th class="type">CHANGE:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="type">body weight (kg):</td>
+                            <td>105</td>
+                            <td>105</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="type">waist-hip-ratio:</td>
+                            <td>0,97</td>
+                            <td>0,97</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="type">age (years):</td>
+                            <td>38</td>
+                            <td>38</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="type">injury:</td>
+                            <td><span class="no">no</span></td>
+                            <td><span class="yes">yes</span></td>
+                            <td><span class="yes">yes</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+        <ng-template carouselSlide [width]='width==320?290:width==360?330:width==375?345:width==384?354:384'>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="header">
+                            <th colspan="4">FIXED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="type"></td>
+                            <td class="type"></td>
+                        </tr>
+                        <tr>
+                            <td class="type">muscle fiber type:</td>
+                            <td>Slow Twitch</td>
+                        </tr>
+                        <tr>
+                            <td class="type">height (cm):</td>
+                            <td>190</td>
+                        </tr>
+                        <tr>
+                            <td class="type">gender:</td>
+                            <td>male</td>
+                        </tr>
+                        <tr>
+                            <td class="type"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+        <ng-template carouselSlide [width]='width==320?290:width==360?330:width==375?345:width==384?354:384'>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="header">
+                            <th colspan="4">PROGRAM SUMMARY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="type fixed-width">TOTAL SESSIONS:</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td class="type fixed-width">MISSED SESSIONS:</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td class="type fixed-width">COMPLETED:</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td class="type fixed-width">PERCENTAGE:</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td class="type fixed-width">AUTO REGULATION:</td>
+                            <td class="p-0">
+                                <div class="slider">
+                                    <ui-switch [(ngModel)]="auto_reg" size="small" (change)="onChangeAutoReg($event)"></ui-switch>
+                                    <label class="text-on">ON</label>
+                                    <label class="text-off">OFF</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+</div>
+
+<div class="row align-items-center sub-title">
+    <div class="col-12 col-sm">
+        <h3>fatigue & recover monitoring:</h3>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 col-sm-12">
+        <osg-strength-athlete-performance-graph></osg-strength-athlete-performance-graph>
+    </div>
+</div>
+
+<div class="row align-items-center sub-title">
+    <div class="col-12 col-sm">
+        <h3>EXPERIENCE BANK:</h3>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 col-sm-9">
+        <div class="row" *showItDevice="['tablet','desktop']">
+            <div class="col-sm-4" *ngFor="let comparison of comparisons">
+                <osg-strength-athlete-performance-comparison [title]="comparison"></osg-strength-athlete-performance-comparison>
+            </div>
+        </div>
+        <div *showItDevice="['mobile']">
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let comparison of comparisons">
+                    <ng-template carouselSlide [width]='width==320?290:width==360?330:width==375?345:width==384?354:384'>
+                        <osg-strength-athlete-performance-comparison [title]="comparison"></osg-strength-athlete-performance-comparison>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-3">
+        <div class="recomendations">
+            <div class="title-recomendations">
+                <h4>Recomendations</h4>
+                <p>Take necessary action(s).</p>
+            </div>
+            <ul>
+                <li>Eat slightly more</li>
+                <li>Try different training design</li>
+                <li>Try different training design</li>
+                <li>Get more sleep</li>
+            </ul>
+        </div>
+
+        <div class="exercise-notes mt-4">
+            <div class="title-exercise">
+                <h4>EXERCISE NOTES</h4>
+                <p>View your notes</p>
+                <ul>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 1</p><a href="">View</a></li>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 2</p><a href="">View</a></li>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 3</p><a href="">View</a></li>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 4</p><a href="">View</a></li>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 5</p><a href="">View</a></li>
+                    <li><time>11.06.17</time>
+                    <p>Exercise notes 6</p><a href="">View</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

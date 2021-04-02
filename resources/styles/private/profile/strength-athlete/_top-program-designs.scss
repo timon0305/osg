@@ -1,0 +1,157 @@
+osg-strength-athlete-top-program-designs {
+	display: block;
+	@media (min-width: 320px) {
+		margin-top: 100px;
+	}
+	@media (min-width: 768px) {
+		margin-top: 50px;
+	}
+    .title {
+        display: block;
+        width: 100%;
+        border-bottom: solid 1px #b7b7b7;
+        padding-bottom: 0px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        h3 {
+            @include section-title;
+            float: left;
+        }
+
+        .sort-box {
+            font-weight: bold;
+            font-size: rem(14);
+            font-family: $fourth-font;
+			
+            p {
+                display: inline-block;
+                color: #ababab;
+                font-size: rem(14);
+                text-transform: uppercase;
+            }
+
+            .dropdown {
+                display: inline-block;
+                outline: none;
+
+                .btn {
+                    background: transparent;
+                    outline: none;
+                    color: #000;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+            }
+			
+			@media (min-width: 320px) {
+				text-align: left;
+			}
+			@media (min-width: 1280px) {
+				text-align: right;
+			}
+        }
+    }
+
+    .table-top-program {
+		.table-responsive {
+			.table {
+				width: 99%!important;
+			}
+		}
+        thead {
+            tr {
+                th {
+                    border: none;
+
+                    &:nth-child(2) {
+                        background: #FFF;
+                        text-transform: uppercase;
+                        font-family: $fourth-font;
+                        font-size: rem(14);
+                        color: #000;
+                        border-top: 2px solid #78cd18;
+                        border-right: 2px solid #78cd18;
+                        border-left: 2px solid #78cd18;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    background: #FFF;
+                    border: 1px solid #dadada;
+                    font-size: 0.7rem;
+                    padding: 7px 9px;
+                    line-height: 16px;
+                    font-family: $third-font;
+                    color: #000;
+                    &.orange{
+                        background: #fff0cf;						
+                    }
+                    &.green{
+                        background: #e8fecd;
+                    }
+                    &.blue{
+                        background: #f0feff;
+                    }
+					&.green-border {
+					    border-left: 2px solid #78cd18;
+					}
+                }
+
+                &:nth-child(odd) {
+                    td {
+                        &:first-child {
+                            color: #000000;
+                        }
+                        &:last-child{
+                            border-right: solid $orange 2px;
+                            border-left: solid $orange 2px;
+                        }
+                        &:nth-child(4){
+                            border-left: 2px solid #78cd18;
+                        }
+                        &:nth-child(14){
+                            border-left: 2px solid #78cd18;
+                        }
+                    }
+                }
+
+                &:last-child{
+                    td{
+                        border-bottom: 2px solid #78cd18;
+                    }
+                }
+
+                &:first-child,
+                &:nth-child(2) {
+                    td {
+						font-size: 0.7rem;
+                        color: #000 !important;
+                    }
+                }
+                &:first-child{
+                    td{
+                        vertical-align: middle;
+                        &:last-child{
+                            border-top: solid $orange 2px;
+                        }
+                        &:nth-child(12){
+                            border-left: 2px solid #78cd18;
+                        }
+                    }
+                }
+                &:nth-last-child(2){
+                    td{
+                        &:last-child{
+                            border-bottom: solid $orange 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

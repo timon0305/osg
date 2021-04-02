@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="main-title">
+      <h1>YOUR FRIENDS</h1>
+      <span>View friend requests or find all your friends.</span>
+  </div>
+  <div class="main-card">
+    <div class="row main-card-header">
+      <div class="col-12">
+        <label>FRIENDS ({{total_cnt}})</label>
+        <span class="span-tab" [ngClass]="{'active':is_type === 0}" (click)='getFriends(0)'>All Friends</span>
+        <span class="span-tab" [ngClass]="{'active':is_type === 1}" (click)='getFriends(1)'>Friend Requests</span>
+      </div>
+    </div>
+    <div class="row main-card-body">
+      <div class="col-6 col-xs-12" *ngFor="let friend of friends;">
+        <div class="friend-list-card">
+          <img class="profile-img" [src]="friend.avatar ? friend.avatar : defaultAvatar">
+          <div class="ml-3">
+            <a (click)='viewProfile(friend.id)'>
+              {{friend.name}}
+            </a>
+          </div>
+          <div class="more-info" *ngIf="is_type == 0">
+            <span>...</span>
+          </div>
+          <div class="more-info" *ngIf="is_type == 1">
+            <a class="btn btn-yellow-gradient py-2 btn-block" (click)="acceptFriend(friend.id)">CONFIRM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

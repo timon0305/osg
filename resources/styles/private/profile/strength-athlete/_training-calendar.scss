@@ -1,0 +1,569 @@
+osg-strength-athlete-training-calendar {
+	display: block;
+	@media (min-width: 320px) {
+		margin-top: 100px;
+	}
+	@media (min-width: 768px) {
+		margin-top: 50px;
+	}
+    .title {
+        display: block;
+        width: 100%;
+        border-bottom: solid 1px #c0dcd7;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        h3 {
+            @include section-title;
+            float: left;
+			@media(min-width: 320px) {
+				text-align: center;
+				font-size: 14px;
+				float: none;
+			}
+			@media(min-width: 375px) {
+				font-size: 16px;
+			}
+			@media(min-width: 414px) {
+				font-size: 18px;
+			}
+			@media(min-width: 480px) {
+				font-size: 20px;
+			}
+			@media(min-width: 768px) {
+				float: left;
+				text-align: unset;
+				font-size: 1.1rem;
+			}
+			@media (min-width: 1280px) {
+				p {
+					font-size: 1.1rem;
+				}
+			}
+        }
+
+        .control-slider {
+		    text-align: right;
+            p {
+                display: inline-block;
+                text-transform: uppercase;
+                font-family: $primary-font;
+                font-size: 1.1rem;
+                margin: 0px;
+            }
+
+            a {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: #000;
+                color: #FFF;
+                text-align: center;
+                border-radius: 5px;
+                line-height: 40px;
+                font-size: rem(20);
+                margin-left: 10px;
+            }
+			@media (min-width: 320px) {
+				text-align: center;
+				margin-top: 10px;
+				p {
+					font-size: 13px;
+				}
+			}
+			@media(min-width: 375px) {
+				p {
+					font-size: 15px;
+				}
+			}
+			@media(min-width: 414px) {
+				p {
+					font-size: 17px;
+				}
+			}
+			@media(min-width: 480px) {
+				p {
+					font-size: 19px;
+				}
+			}
+			@media(min-width: 768px) {
+				text-align: right;
+				margin-top: 0px;
+				p {
+					font-size: 15px;
+				}
+			}
+			@media (min-width: 1280px) {
+				font-size: 1.125rem;
+			}
+        }
+
+        .edit {
+            display: none;
+            float: right;
+            width: 20px;
+            filter: brightness(0.5) sepia(1) hue-rotate(140deg) saturate(0);
+			@media(min-width: 768px) {
+				display: block;
+			}
+        }
+    }
+	
+	.responsive-calendar.desktop {
+		width: 100%;
+		
+		@media only screen and (max-width: 768px) {
+			overflow-x: auto;
+		}
+		
+		.conventions {
+			display: block;
+			text-align: center;
+			width: 100%;		
+			
+			@media only screen and (max-width: 768px) {
+				width: 997px;
+			}
+			
+			p {
+				color: #838383;
+				font-size: rem(14);
+				display: inline-block;
+				margin-right: 10px;
+				margin-left: 10px;
+
+				span {
+					display: inline-block;
+					width: 40px;
+					height: 3px;
+					margin-right: 10px;
+				}
+
+				&.test {
+					span {
+						border-top: dashed 3px $orange;
+					}
+				}
+
+				&.completed {
+					span {
+						border-top: solid 3px $dark-green;
+					}
+				}
+
+				&.missed {
+					span {
+						border-top: solid 3px #ff7200;
+					}
+				}
+
+				&.today {
+					span {
+						border-top: dashed 3px #a9a9a9;
+					}
+				}
+
+				&.upcoming {
+					span {
+						border-top: solid 3px #128cf3;
+					}
+				}
+			}
+		}
+			
+		.calendar {
+			display: block;
+			padding-bottom: 20px;
+			
+			@media only screen and (max-width: 768px) {
+				overflow-x: initial;
+			}
+			
+			.week-days {
+				@extend .row;
+				text-align: center;
+				font-size: rem(14);
+				margin-bottom: 10px;
+			}
+
+			.wrapper-weeks {
+				.week {
+					@extend .row;
+					@extend .no-gutters;
+
+					.day {
+						@extend .col;
+						padding-right: 2px;
+						padding-left: 2px;
+						position: relative;
+						@media (min-width: 1920px) {
+							padding-right: 5px;
+							padding-left: 5px;
+							background: #f5f5f5;
+						}
+						div {
+							display: block;
+							background: #FFF;
+							border-left: solid 1px #dadada;
+							border-right: solid 1px #dadada;
+							border-bottom: solid 2px #bcbcbc;
+							margin-bottom: 10px;
+							height: 180px;
+							position: relative;
+							padding: 30px rem(10) rem(10);
+							cursor: pointer;
+							transition: all 0.2s linear;
+
+							p {
+								font-size: rem(14);
+								color: #838383;
+								display: block;
+							}
+
+							b {
+								font-size: rem(14);
+								color: #000;
+								display: block;
+							}
+
+							.time {
+								display: block;
+								position: absolute;
+								top: rem(8);
+								left: rem(10);
+								color: #838383;
+								font-size: rem(14);
+								transition: all 0.2s linear;
+							}
+						}
+						.show-btn {
+							background: #fff;
+							border: 2px solid #acacac;
+							padding: 2px 5px 4px 5px;
+							position: absolute;
+							top: 130px;
+							border-radius: 5px;
+							img {
+								width: 20px;
+							}
+							@media (min-width: 1280px) {
+								right: 15px;
+							}
+							@media (min-width: 1920px) {
+								right: 18px;
+							}
+						}
+						&.completed{
+							div {
+								background: #f0ffdf;
+								border-bottom-color: $dark-green;
+								border-left-color: #d5ebbd;
+								border-right-color: #d5ebbd;
+								.time{
+									color: $dark-green;
+								}
+							}
+						}
+						&.missed{
+							div {
+								background: #ffecdd;
+								border-bottom-color: #ff7200;
+								border-left-color: #f8d4b8;
+								border-right-color: #f8d4b8;
+								.time{
+									color: $dark-green;
+								}
+							}
+						}
+						&.test{
+							div {
+								&:after{
+									content: "";
+									display: block;
+									position: absolute;
+									top: 3%;
+									left: 3%;
+									border: dashed 2px $orange;
+									width: 94%;
+									height: 94%;
+								}
+							}
+						}
+						&.today{
+							div {
+								&:after{
+									content: "";
+									display: block;
+									position: absolute;
+									top: 3%;
+									left: 3%;
+									border: dashed 2px #a9a9a9;
+									width: 94%;
+									height: 94%;
+								}
+							}
+						}
+						&.upcoming{
+							div {
+								background: #e2f2ff;
+								border-bottom-color: #128cf3;
+								border-left-color: #bcdbf4;
+								border-right-color: #bcdbf4;
+								.time{
+									color: #128cf3;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.responsive-calendar.mobile {
+		width: 100%;
+			
+		.calendar {
+			display: block;
+			overflow-x: unset !important;
+			.week-days {
+				@extend .row;
+				text-align: center;
+				font-size: rem(14);
+				margin: 0;
+				margin-bottom: 10px;
+				width: 100%;
+				.date {
+					flex-basis: 0;
+					flex-grow: 1;
+					max-width: 100%;
+					padding-left: 2px;
+					padding-right: 2px;
+				}
+			}
+
+			.wrapper-weeks {
+				width: 100%;
+				.week {
+					@extend .row;
+					@extend .no-gutters;
+
+					.day {
+						@extend .col;
+						padding-right: 2px;
+						padding-left: 2px;
+						
+						div {
+							display: block;
+							background: #FFF;
+							border-left: solid 1px #dadada;
+							border-right: solid 1px #dadada;
+							border-bottom: solid 2px #bcbcbc;
+							margin-bottom: 10px;
+							height: 50px;
+							position: relative;
+							cursor: pointer;
+							transition: all 0.2s linear;
+							text-align: center;
+
+							p {
+								font-size: rem(14);
+								color: #838383;
+								display: block;
+							}
+
+							b {
+								font-size: rem(14);
+								color: #000;
+								display: block;
+							}
+
+							.time {
+								display: block;
+								color: #838383;
+								font-size: 0.875rem;
+								transition: all 0.2s linear;
+								line-height: 50px;
+							}
+						}
+
+						&.completed{
+							div {
+								background: #f0ffdf;
+								border-bottom-color: $dark-green;
+								border-left-color: #d5ebbd;
+								border-right-color: #d5ebbd;
+								.time{
+									color: $dark-green;
+								}
+							}
+						}
+						&.missed{
+							div {
+								background: #ffecdd;
+								border-bottom-color: #ff7200;
+								border-left-color: #f8d4b8;
+								border-right-color: #f8d4b8;
+								.time{
+									color: $dark-green;
+								}
+							}
+						}
+						&.test{
+							div {
+								&:after{
+									content: "";
+									display: block;
+									position: absolute;
+									top: 3%;
+									left: 3%;
+									border: dashed 2px $orange;
+									width: 94%;
+									height: 94%;
+								}
+							}
+						}
+						&.today{
+							div {
+								&:after{
+									content: "";
+									display: block;
+									position: absolute;
+									top: 3%;
+									left: 3%;
+									border: dashed 2px #a9a9a9;
+									width: 94%;
+									height: 94%;
+								}
+							}
+						}
+						&.upcoming{
+							div {
+								background: #e2f2ff;
+								border-bottom-color: #128cf3;
+								border-left-color: #bcdbf4;
+								border-right-color: #bcdbf4;
+								.time{
+									color: #128cf3;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.workout {
+			.workout-title {
+				p {
+					margin: 0;
+					text-decoration: underline;
+					font-family: "Gotham Medium"; 
+				}
+			}
+			.workout-item {
+				background: #e2f2ff !important;
+				border: 2px solid #128cf3 !important;
+				border-radius: 5px;
+				padding: 20px 15px;
+				display: flex;
+				margin-bottom: 20px;
+				font-family: "Gotham Medium";
+				.workout-item-text {
+					width: 65%;
+					.workout-item-status {
+						p {
+							margin-bottom: 0;
+						}
+						.date-status {
+							color: #000;
+							font-size: 13px;
+							@media screen and (max-width:375px) {
+								font-size: 12px;
+							}
+							@media screen and (max-width:360px) {
+								font-size: 11px;
+							}					
+							@media screen and (max-width:320px) {
+								font-size: 9px;
+							}						
+						}
+						.item-type {
+							color: #ffb20d;
+							font-size: 15px;
+							font-weight: bold;
+							@media screen and (max-width:414px) {
+								font-size: 14px;
+							}
+							@media screen and (max-width:375px) {
+								font-size: 12px;
+							}
+							@media screen and (max-width:360px) {
+								font-size: 11px;
+							}
+						}
+						.item-title {
+							color: #737373;
+							font-size: 13px;
+							@media screen and (max-width:375px) {
+								font-size: 12px;
+							}
+							@media screen and (max-width:360px) {
+								font-size: 11px;
+							}					
+							@media screen and (max-width:320px) {
+								font-size: 10px;
+							}
+						}
+					}
+				}
+				.workout-item-button {
+					width: 35%;
+					text-align: center;
+					.start_btn {
+						background-image: linear-gradient(to bottom right, #8dcc3e, #67a815);
+						padding: 10px 19px;
+						font-weight: bold;
+						border-radius: 2px;
+						display: inline-block;
+						margin-top: 10px;
+						text-transform: uppercase;
+						font-size: 12px;
+						@media screen and (max-width: 375px) {
+							padding: 10px 13px;
+							margin-top: 15px;
+						}
+						@media screen and (max-width: 360px) {
+							padding: 10px 11px;
+							margin-top: 15px;
+						}
+						@media screen and (max-width: 320px) {
+							padding: 5px 5px;
+							margin-top: 15px;
+						}
+					}
+					.edit_btn {
+						background: #fff;
+						border: 1px solid #acacac;
+						padding: 7px 5px 9px 5px;
+						margin-left: 5px;
+						@media screen and (max-width: 320px) {
+							padding: 2px 3px 6px 3px;
+						}
+						img {
+							width: 25px;
+							@media screen and (max-width: 375px) {
+								width: 23px;
+							}
+							@media screen and (max-width: 360px) {
+								width: 22px;
+							}
+							@media screen and (max-width: 320px) {
+								width: 20px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

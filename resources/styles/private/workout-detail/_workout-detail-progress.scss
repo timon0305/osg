@@ -1,0 +1,42 @@
+osg-workout-detail-progress {
+	.flex-content {
+		display: flex;
+		flex-direction: column;
+		height: 100px;
+		justify-content: space-between;
+		.stepper-group {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			.stepper {
+				button {
+					border: 1px solid #606060;
+					background: #fff;
+					padding: 5px 15px;
+					span {
+						font-size: 20px;
+					}
+				}
+			}
+			.amount {
+				text-align: center;
+				label {
+					color: #646464;
+					margin-bottom: 0;
+					font-size: 11px;
+				}
+			}
+		}
+		@media (min-width: 320px) {
+			height: 80px;
+			.stepper-group {
+				.stepper {
+					button {
+						padding: 1px 10px;
+					}
+				}
+			}
+		}
+	}
+}
+

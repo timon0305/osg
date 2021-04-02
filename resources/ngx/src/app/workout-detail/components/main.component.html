@@ -1,0 +1,141 @@
+<div class="header">
+	<div class="status-tab {{type}}" *ngIf="status!='completed'">
+		<div class="date-time">
+			<div class="date-navigation">
+				<p class="date">{{date}}</p>
+				<p>{{day}} {{year}}</p>
+				<a class="back_button" (click)="back()">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-left fa-w-14 fa-lg"> <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" class=""></path></svg>
+				</a>
+			</div>
+			<div class="time-block">
+				<img src="assets/images/icons/time.png">
+				<p>{{time}}</p>
+			</div>
+		</div>
+		<div class="action-tab">
+			<div class="type">
+				<p>Chest:</p>
+				<h5>Bench Press</h5>
+			</div>
+			<div class="action">
+				<a class="button" (click)="slidePrev()">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="svg-inline--fa fa-angle-left fa-w-8 fa-lg"><path fill="currentColor" d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z" class=""></path></svg>
+				</a>
+				<a class="button refresh" (click)="slideRefresh()">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-undo fa-w-16 fa-lg"><path fill="currentColor" d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z" class=""></path></svg>
+				</a>
+				<a class="button" (click)="slideNext()">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="svg-inline--fa fa-angle-right fa-w-8 fa-2x"><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" class=""></path></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+	<osg-workout-detail-complete *ngIf="status =='completed'"></osg-workout-detail-complete>
+</div>
+<div class="container" *ngIf="status!='completed'">
+	<div class="card">
+		<div class="side-nav">
+			<div class="item-title start-title">set {{current_set}} of 30</div>
+			<div class="item-group">
+				<div class="item">Exercise</div>
+				<div class="item">Method
+					<ng-template #popContent>
+							<b>Straight set:</b> is an ordinary set where you do a set of one exercise, rest and proceed to the next set.<br>
+							<b>Warm up set:</b> perform one or several sets with low weight and intensity prior to your work sets.<br>
+							<b>Test AMRAP set:</b> is a test set where you perform as many reps as possible with maximum effort, used to calculate your one repetition maximum (1 RM).<br>
+							<b>Pyramid set:</b> is a collection of sets, of the same exercise, that start with a light weight and higher reps, building up to a heavier weight and fewer reps<br>
+							<b>Super set:</b> when doing two exercises that target opposing muscle in a row with minimal rest between them.<br>
+							<b>Giant set:</b> is a circuit of three or more exercises for one muscle group performed one after another with little to no rest in between.<br>
+							<b>Pre-exhaust set:</b> when doing an isolation or 'single-joint' exercise followed by one compound or 'multiple-joint' movement.<br>
+							<b>Drop set:</b> performing multiple sets of an exercise to technical failure with successively lighter loads and little to no rest.
+					</ng-template>
+					<button type="button" class="btn btn-outline-secondary mr-2" data-boundary="viewport" placement="bottom" [ngbPopover]="popContent">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+				<div class="item">Rest Period</div>
+				<div class="item">Tempo
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbPopover="E.g. “3-0-2-1”, means 3 seconds lowering the load (eccentric), 0 seconds in the bottom position (stretch), 2 seconds raising the load (concentric), and 1 second at the top position (peak).">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+			</div>
+			<div class="item-group">
+				<div class="item">Target Load
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="shows the working load (kg) you are aiming at.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+				<div class="item">Target RTF
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="is the number you are aiming for considering reps left in the tank, or how many reps more you could performed if you had to after completing the set.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+				<div class="item">Target reps
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="is how many repetitions you are aiming for.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+			</div>
+			<div class="item-group">
+				<div class="item">Autoreg. load
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="your actual working load. When performing multiple sets for the same muscle group, the working load on the current set can be autoregulated. If you exceeded the target reps or target RTF in the previous set, the load in the current set is upregulated, and vice versa.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+				<div class="item multi-line">Performed RTF
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="the actual number of how many repetitions more you could performed if you had to after completing the set.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+				<div class="item multi-line">Performed reps
+					<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="the actual number of repetitions you performed.">
+						<img src="/images/information-ikon.png"/>
+					</button>
+				</div>
+			</div>
+		</div>
+		<ngx-siema [options]="options">
+			<ngx-siema-slide *ngFor="let set of carouselData">
+				<div [ngClass]="current_set == set.id?'active set':'set'">
+					<div class="item-title">{{set.text}}</div>
+					<div class="item-group">
+						<div class="item">{{set.exercise}}</div>
+						<div class="item">{{set.method}}</div>
+						<div class="item">{{set.rest_period}}</div>
+						<div class="item">{{set.tempo}}</div>
+					</div>
+					<div class="item-group">
+						<div class="item">{{set.target_load}} (kg)</div>
+						<div class="item">{{set.target_reps}}</div>
+						<div class="item">{{set.target_rtf}}</div>
+					</div>
+					<div class="item-group">
+						<div class="item">
+							<input type="text" id="autoreg_{{set.id}}" value="{{set.autoreg}}" *ngIf="set.autoreg != '0'">
+							<input type="text" id="autoreg_{{set.id}}" *ngIf="set.autoreg == '0'">
+						</div>
+						<div class="item">
+							<input type="text" id="performed_rtf_{{set.id}}" value="{{set.performed_rtf}}" *ngIf="set.performed_rtf != '0'">
+							<input type="text" id="performed_rtf_{{set.id}}" *ngIf="set.performed_rtf == '0'">
+						</div>
+						<div class="item">
+							<input type="text" id="performed_reps_{{set.id}}" value="{{set.performed_reps}}" *ngIf="set.performed_reps != '0'">
+							<input type="text" id="performed_reps_{{set.id}}" *ngIf="set.performed_reps == '0'">
+						</div>
+					</div>
+				</div>
+			</ngx-siema-slide>
+		</ngx-siema>
+	</div>
+	<div class="card event">
+		<div class="form-progress">
+			<osg-workout-detail-progress [reps]="reps" [rtf]="rtf" (valueChange)="valueChange($event)"></osg-workout-detail-progress>
+		</div>
+		<div class="form-buttons">
+			<div class="single-button finish" (click)="finishSet()">Ok</div>
+			<div class="single-button reset" (click)="reSet()"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-undo fa-w-16 fa-lg"><path fill="currentColor" d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z" class=""></path></svg></div>
+		</div>
+	</div>
+</div>

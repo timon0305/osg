@@ -1,0 +1,179 @@
+osg-workout-list {
+	.workout-item-title {
+		p {
+			font-size: 20px;
+			font-family: "Gotham Bold";
+			margin-bottom: 5px;
+		}
+	}
+	.workout-item-completed {
+		background: #f0ffdf !important;
+		border: 2px solid #92b507 !important;
+	}
+	.workout-item-missed {
+		background: #ffecdd !important;
+		border: 2px solid #ff7200 !important;
+	}
+	.workout-item-upcoming {
+		background: #e2f2ff !important;
+		border: 2px solid #128cf3 !important;
+	}
+	.workout-item-today {		
+		padding: 10px 5px !important;
+		display: block !important;
+	}
+	.workout-inner-today {
+		border: 2px dashed #aaaaaa;
+		padding: 10px 10px;
+		display: flex;
+	}	
+    .workout-item {
+		background: #f5f5f5;
+		border: 2px solid #aaaaaa;
+		border-radius: 5px;
+		padding: 20px 15px;
+		display: flex;
+		margin-bottom: 20px;
+		font-family: "Gotham Medium";
+		.workout-item-text {
+			width: 65%;
+			.workout-item-status {
+				p {
+					margin-bottom: 0;
+				}
+				.date-status {
+					color: #000;
+					font-size: 13px;
+					@media screen and (max-width:375px) {
+						font-size: 12px;
+					}
+					@media screen and (max-width:360px) {
+						font-size: 11px;
+					}					
+					@media screen and (max-width:320px) {
+						font-size: 9px;
+					}
+					.today {
+						color: #a0a0a0;
+						padding-left: 5px;
+						svg {
+							width: 10px;
+							height: 10px;
+						}
+					}
+					.completed {
+						color: #86a606;
+						padding-left: 5px;
+						svg {
+							width: 10px;
+						}
+					}
+					.in-progress {
+						color: #ff720a;
+						padding-left: 5px;
+					}
+					.missed {
+						color: #ff7c1e;
+						padding-left: 5px;
+						svg {
+							width: 10px;
+							height: 10px;
+						}
+					}
+					.test {
+						color: #ff7200;
+						padding-left: 5px;
+					}
+					.upcoming {
+						color: #128cf3;
+						padding-left: 5px;
+						svg {
+							width: 10px;
+							height: 10px;
+						}
+					}
+				}
+				.item-type {
+					color: #ffb20d;
+					font-size: 15px;
+					font-weight: bold;
+					@media screen and (max-width:414px) {
+						font-size: 14px;
+					}
+					@media screen and (max-width:375px) {
+						font-size: 12px;
+					}
+					@media screen and (max-width:360px) {
+						font-size: 11px;
+					}
+				}
+				.item-title {
+					color: #737373;
+					font-size: 13px;
+					@media screen and (max-width:375px) {
+						font-size: 12px;
+					}
+					@media screen and (max-width:360px) {
+						font-size: 11px;
+					}					
+					@media screen and (max-width:320px) {
+						font-size: 10px;
+					}
+				}
+			}
+		}
+		.workout-item-button {
+			width: 35%;
+			text-align: center;
+			.start_btn {
+				background-image: linear-gradient(to bottom right, #8dcc3e, #67a815);
+				padding: 10px 19px;
+				font-weight: bold;
+				border-radius: 2px;
+				display: inline-block;
+				margin-top: 10px;
+				text-transform: uppercase;
+				font-size: 12px;
+				@media screen and (max-width: 375px) {
+					padding: 10px 13px;
+					margin-top: 15px;
+				}
+				@media screen and (max-width: 360px) {
+					padding: 10px 11px;
+					margin-top: 15px;
+				}
+				@media screen and (max-width: 320px) {
+					padding: 5px 5px;
+					margin-top: 15px;
+				}
+			}
+			.edit_btn {
+				background: #fff;
+				border: 1px solid #acacac;
+				padding: 7px 5px 9px 5px;
+				margin-left: 5px;
+				@media screen and (max-width: 320px) {
+					padding: 2px 3px 6px 3px;
+				}
+				img {
+					width: 25px;
+					@media screen and (max-width: 375px) {
+						width: 23px;
+					}
+					@media screen and (max-width: 360px) {
+						width: 22px;
+					}
+					@media screen and (max-width: 320px) {
+						width: 20px;
+					}
+				}
+			}
+			&.deactive {
+				.start_btn {
+					background-image: linear-gradient(to bottom right, #c8eb9f, #badd8f);
+					color: #909986;
+				}
+			}
+		}
+	}
+}

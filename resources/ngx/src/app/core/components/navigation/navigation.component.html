@@ -1,0 +1,172 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" (click)="link('/')">
+            <img src="assets/images/logo.png" class="img-fluid d-block mx-auto" alt="">
+        </a>
+        <div class="navbar-menu" *showItDevice="['mobile']">
+            <a (click)="link('/notifications')" class="notification"><img class="d-block mx-auto img-fluid" src="assets/images/icons/icon-notifications.svg"></a>
+            <a (click)="link('/profile')" class="profile"><img class="img-fluid ml-lg-2 ml-xl-1" src="assets/images/icons/icon-account.svg"></a>
+            <a class="profile" data-toggle="collapse" data-target="#searchContent" aria-controls="searchContent" aria-expanded="false" aria-label="Toggle navigation"><img class="d-block mx-auto img-fluid" src="assets/images/icons/icon-search.svg"></a>
+            <div class="collapse navbar-collapse mobile" id="searchContent" *showItDevice="['mobile']">
+                <label class="search-field">
+                  <input type="text" placeholder="Search Here" ng-keyup='fetchUser()' ng-click='searchboxClicked($event);' ng-model='searchText' >
+                </label>
+            </div>
+            <button [ngClass]="isCollapsed?'navbar-toggler change':'navbar-toggler'" type="button" (click)="toggle()">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse mobile" id="navbarSupportedContent" [ngStyle]="{display: isCollapsed?'block':'none'}" *showItDevice="['mobile']">
+            <ul class="navbar-nav mr-auto left-menu">
+                <li *ngIf="isProgramDesigner" class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/calendar-builder')">
+                        <img src="assets/images/icons/icon-plan.svg">
+                        Calendar Builder
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/experience-bank')">
+                        <img src="/assets/images/icons/icon-house.svg">
+                        Experience Bank
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/strength-standards')">
+                        <img src="/assets/images/icons/icon-strength.svg">
+                        Strength Standards
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/program-designs')">
+                        <img src="/assets/images/icons/icon-gear.svg">
+                        Program Designs
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active" *ngIf="isMobile">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/workout-log')">
+                        <img src="/assets/images/icons/workout-log.png">
+                        Workout Log
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="link('/contacts')">
+                        <img src="assets/images/icons/icon-contacts.svg">
+                        Contacts
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" data-toggle="collapse" (click)="logout()">
+                        <img src="assets/images/icons/icon-logout.svg">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+            <form #logoutForm ngNoForm id="logout-form" action="/logout" method="POST" style="display: none;">
+                <input type="hidden" name="_token" value="{{csrf}}" />
+            </form>
+        </div>
+        <div class="collapse navbar-collapse" *showItDevice="['tablet','desktop']">
+            <ul class="navbar-nav mr-auto search-menu left-menu">
+                <li class="nav-item">
+                  <label>
+                    <input type="text" placeholder="Search Here" (keyup)='search()' (click)='searchboxClicked($event);' [(ngModel)]='searchText' >
+                  </label>
+                  <div id='searchResult' *ngIf="isSearch">
+                    <h3>Users</h3>
+                    <div *ngFor="let result of searchUserResult" class="searchResultRow">
+                      <a (click)="profileView(result.id)">{{result.name}}</a>
+                    </div>
+                    <h3>Programs</h3>
+                    <div *ngFor="let result of searchProgramResult" class="searchResultRow">
+                      <a (click)="profileView(result.user)">{{result.name}}</a>
+                    </div>
+                  </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto left-menu">
+                <li *ngIf="isProgramDesigner" class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" (click)="link('/calendar-builder')">
+                        <img src="assets/images/icons/icon-plan.svg">
+                        Calendar Builder
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" (click)="link('/experience-bank')">
+                        <img src="/assets/images/icons/icon-house.svg">
+                        Experience Bank
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" (click)="link('/strength-standards')">
+                        <img src="/assets/images/icons/icon-strength.svg">
+                        Strength Standards
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" (click)="link('/program-designs')">
+                        <img src="/assets/images/icons/icon-gear.svg">
+                        Program Designs
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active" *ngIf="isMobile">
+                    <a class="nav-link" (click)="link('/workout-log')">
+                        <img src="/assets/images/icons/workout-log.png">
+                        Workout Log
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" (click)="link('/contacts')">
+                        <img src="assets/images/icons/icon-contacts.svg">
+                        Contacts
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav align-items-center right-menu">
+                <li class="nav item notification" routerLinkActive="active">
+                    <a (click)="notification()" class="nav-link notification">
+                      <img [ngClass]="{'alarm': notifications.length > 0}" class="d-block mx-auto img-fluid" src="assets/images/icons/icon-notifications.svg" >
+                    </a>
+                    <div class="notification-box" *ngIf="isNotification">
+                      <li *ngIf="notifications.length == 0">
+                          no notification
+                      </li>
+                      <li *ngFor="let item of notifications;">
+                          <p (click)="notifyLink(item.id, item.type)">{{item.content}}</p>
+                      </li>
+                    </div>
+                </li>
+                <li class="nav item profile" routerLinkActive="active">
+                    <a (click)="profile()" class="nav-link"><img class="img-fluid ml-3 ml-lg-2 ml-xl-1" src="assets/images/icons/icon-account.svg">{{fullName}}</a>
+                </li>
+                <div class="profile-box" *ngIf="isProfile">
+                    <li class="nav item" routerLinkActive="active">
+                        <a (click)="menu('/profile')" class="nav-link"><img class="d-block img-fluid" src="assets/images/icons/icon-account.svg">MY PROFILE</a>
+                    </li>
+                    <li class="nav item" routerLinkActive="active">
+                        <a (click)="menu('/info')" class="nav-link"><img class="d-block img-fluid" src="assets/images/icons/icon-info.svg">HELP CENTER</a>
+                    </li>
+                    <li class="nav item" routerLinkActive="active">
+                        <a (click)="menu('/info')" class="nav-link"><img class="d-block img-fluid" src="assets/images/icons/icon-gear.svg">SETTINGS</a>
+                    </li>
+                    <li class="nav item" >
+                        <a (click)="logout()" class="nav-link"><img class="d-block img-fluid" src="assets/images/icons/icon-logout.svg">LOGOUT</a>
+                    </li>
+                </div>
+            </ul>
+            <form #logoutForm ngNoForm id="logout-form" action="/logout" method="POST" style="display: none;">
+                <input type="hidden" name="_token" value="{{csrf}}" />
+            </form>
+        </div>
+    </div>
+</nav>

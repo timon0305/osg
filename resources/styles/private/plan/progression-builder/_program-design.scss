@@ -1,0 +1,122 @@
+osg-progression-builder-program-design {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    .table-program-design {
+        display: block;
+        margin-top: 20px;
+        thead {
+            tr {
+                th {
+                    border: 1px solid #dadada;
+                    font-size: 0.85rem;
+					font-family: "Gotham Medium";
+					font-weight: 300;
+                    color: #000 !important;
+                    vertical-align: middle;
+                    background: #fff0cf;
+                    &.red {
+                        background: #fff0e8 !important;
+                    }
+
+                    &.green {
+                        background: #e8fecd !important;
+                    }
+
+                    &.blue {
+                        background: #f0feff !important;
+                    }
+                }
+                &:first-child{
+                    th{
+                        &:not(:nth-child(2)),
+                        &:not(:first-child){
+                            border-top: 2px solid #78cd18;
+                        }
+                        &:nth-child(2),
+                        &:first-child{
+                            border-top: 2px solid #dadada;
+                        }
+                        &:nth-child(3){
+                            border-left: 2px solid #78cd18;
+                        }
+                        &:last-child{
+                            border-right: 2px solid #78cd18;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    background: #fff;
+                    border: 1px solid #dadada;
+                    font-size: 0.85rem;
+					font-family: "Gotham Medium";
+					font-weight: 300;
+                    padding: 0.55rem;
+                    color: #000;
+
+                    &.red {
+                        background: #fff0e8 !important;
+                    }
+
+                    &.green {
+                        background: #e8fecd !important;
+                    }
+
+                    &.blue {
+                        background: #f0feff !important;
+                    }
+
+					&.border-bottom {
+						border-bottom: 2px solid #78cd18 !important;
+					}
+                }
+
+                &:nth-child(odd) {
+                    td {
+                        &:first-child{
+                            background: #fff0cf;
+                        }
+                        &:first-child,
+                        &:nth-child(2) {
+                            color: #000;
+                        }
+
+                        &:last-child{
+                            border-right: 2px solid #78cd18;
+                        }
+                    }
+                }
+                &:nth-child(even) {
+                    td {
+                        &:first-child{
+                            background: #fff0cf;
+                        }
+                        &:nth-child(2) {
+                            color: #000;
+                            border-right: 2px solid #78cd18;
+                        }
+
+                        &:last-child{
+                            border-right: 2px solid #78cd18;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        border-bottom: 2px solid #78cd18;
+                        &:first-child,
+                        &:nth-child(2){
+                            border-bottom: 1px solid #dadada;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

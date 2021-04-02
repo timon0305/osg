@@ -1,0 +1,565 @@
+<div class="col-12 interview-desktop" *showItDevice="['tablet', 'desktop']">
+  <div class="step1" *ngIf="step_count == 1">
+    <div class="content-form h-100">
+      <div class="row">
+        <div class="col-12">
+          <div class="header mt-5 mb-3">
+            <h2>Training program inputs</h2>
+            <p class="mt-2">Step 1 of 3</p>
+            <h5>Manual Inputs</h5>
+          </div>
+          <div class="body">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" name="waist" id="waist" class="form-control" [(ngModel)]="basic_info.waist" (focus)="onFocus('waist')" (blur)="onBlur()">
+                <label [ngClass]="isFocus=='waist'?'focus':basic_info.waist!=''?'focus':''">Waist Circumference *</label>
+              </div>
+              <div class="input-group">
+                <input type="text" name="hip" id="hip" [(ngModel)]="basic_info.hip" class="form-control" (focus)="onFocus('hip')" (blur)="onBlur()">
+                <label [ngClass]="isFocus=='hip'?'focus':basic_info.hip!=''?'focus':''">Hip Circumference *</label>
+              </div>
+              <div class="input-group">
+                <input type="text" name="weight" id="weight" [(ngModel)]="basic_info.weight" class="form-control" (focus)="onFocus('weight')" (blur)="onBlur()">
+                <label [ngClass]="isFocus=='weight'?'focus':basic_info.weight!=''?'focus':''">Body Weight *</label>
+              </div>
+              <div class="input-group">
+                <input type="text" name="ratio" id="ratio" [(ngModel)]="basic_info.ratio" class="form-control" (focus)="onFocus('ratio')" (blur)="onBlur()">
+                <label [ngClass]="isFocus=='ratio'?'focus':basic_info.ratio!=''?'focus':''">Waist-to-Hip Ratio *</label>
+              </div>
+              <div class="select-group">
+                <label>Injury *</label>
+                <select name="injury" class="form-control" id="injury">
+                  <option value="chest">Chest</option>
+                  <option value="upper_back">Upper back</option>
+                  <option value="lower_back">Lower back</option>
+                  <option value="shoulders">Shoulders</option>
+                  <option value="triceps">Triceps</option>
+                  <option value="biceps">Biceps</option>
+                  <option value="forearms">Forearms</option>
+                  <option value="abs">Abs</option>
+                  <option value="quads">Quads</option>
+                  <option value="hamstrings">Hamstrings</option>
+                  <option value="glutes">Glutes</option>
+                  <option value="calves">Calves</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <a class="btn btn-green-gradient" (click)="NextToStep2()">continue <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-right fa-w-10 fa-2x"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="step2" *ngIf="step_count == 2">
+    <div class="content-form h-100">
+      <div class="row">
+        <div class="col-12">
+          <div class="header mt-5 mb-3">
+            <h2>Training program inputs</h2>
+            <p class="mt-2">Step 2 of 3</p>
+            <h5>Other Activites</h5>
+          </div>
+          <div class="body step2">
+            <div class="calendar-box">
+              <div class="category">
+                <p class="title">Category:</p>
+                <div class="title-group">
+                  <div><p>endurance:</p></div><hr/>
+                  <div><p>strength:</p></div><hr/>
+                  <div><p>balance:</p></div><hr/>
+                  <div><p>flexibility:</p></div>
+                </div>
+              </div>
+              <div class="calendar">
+                <p>Training days (average pr. week):</p>
+                <div class="table-responsive">
+                  <div class="table">
+                    <div class="week-days">
+                      <div class="date">Mon</div>
+                      <div class="date">Tue</div>
+                      <div class="date">Wed</div>
+                      <div class="date">Thu</div>
+                      <div class="date">Fri</div>
+                      <div class="date">Sat</div>
+                      <div class="date">Sun</div>
+                    </div>
+                    <div class="wrapper-weeks">
+                      <div class="week">
+                        <div [ngClass]="activity_selects[0].days.mon?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'mon')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.tue?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'tue')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.wed?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'wed')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.thu?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'thu')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.fri?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'fri')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.sat?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'sat')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[0].days.sun?'checked day':'day'" (click)="CheckTrainingDay('endurance', 'sun')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                      </div>
+                      <hr/>
+                      <div class="week">
+                        <div [ngClass]="activity_selects[1].days.mon?'checked day':'day'" (click)="CheckTrainingDay('strength', 'mon')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.tue?'checked day':'day'" (click)="CheckTrainingDay('strength', 'tue')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.wed?'checked day':'day'" (click)="CheckTrainingDay('strength', 'wed')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.thu?'checked day':'day'" (click)="CheckTrainingDay('strength', 'thu')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.fri?'checked day':'day'" (click)="CheckTrainingDay('strength', 'fri')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.sat?'checked day':'day'" (click)="CheckTrainingDay('strength', 'sat')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[1].days.sun?'checked day':'day'" (click)="CheckTrainingDay('strength', 'sun')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                      </div>
+                      <hr/>
+                      <div class="week">
+                        <div [ngClass]="activity_selects[2].days.mon?'checked day':'day'" (click)="CheckTrainingDay('balance', 'mon')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.tue?'checked day':'day'" (click)="CheckTrainingDay('balance', 'tue')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.wed?'checked day':'day'" (click)="CheckTrainingDay('balance', 'wed')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.thu?'checked day':'day'" (click)="CheckTrainingDay('balance', 'thu')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.fri?'checked day':'day'" (click)="CheckTrainingDay('balance', 'fri')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.sat?'checked day':'day'" (click)="CheckTrainingDay('balance', 'sat')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[2].days.sun?'checked day':'day'" (click)="CheckTrainingDay('balance', 'sun')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                      </div>
+                      <hr/>
+                      <div class="week">
+                        <div [ngClass]="activity_selects[3].days.mon?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'mon')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.tue?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'tue')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.wed?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'wed')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.thu?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'thu')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.fri?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'fri')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.sat?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'sat')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                        <div [ngClass]="activity_selects[3].days.sun?'checked day':'day'" (click)="CheckTrainingDay('flexibility', 'sun')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="select-group">
+              <div class="group-box">
+                <p class="title">intensity (average pr. week):</p>
+                <ng-template #popContent>
+                  <b>Low intensity: </b><br>
+                    - Light to very light rate of perceived exortion.<br>
+                    - Under 50 percent of your max heart rate. <br>
+                    - Like walking. <br>
+                  <b>Medium intensity: </b><br>
+                    - Medium to hard rate of perceived exertion. <br>
+                    - 50 to 70 percent of your max heart rate. <br>
+                    - Like jogging. <br>
+                  <b>High intensity:</b><br>
+                    - Very hard to maximum rate of perceived exertion. <br>
+                    - Above 70 percent of your max heart rate. <br>
+                    - Like sprinting.
+                </ng-template>
+                <button type="button" class="btn mr-2" data-boundary="viewport" placement="bottom" [ngbPopover]="popContent">
+                  <img src="/images/information-ikon.png"/>
+                </button>
+                <div class="select-box">
+                  <select class="form-control" (change)="onIntensityChange($event.target.value, 'endurance')">
+                    <option default>--- Select ---</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="vigorous">Vigorous</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onIntensityChange($event.target.value, 'strength')">
+                    <option default>--- Select ---</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="vigorous">Vigorous</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onIntensityChange($event.target.value, 'balance')">
+                    <option default>--- Select ---</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="vigorous">Vigorous</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onIntensityChange($event.target.value, 'flexibility')">
+                    <option default>--- Select ---</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="vigorous">Vigorous</option>
+                  </select>
+                </div>
+              </div>
+              <div class="group-box">
+                <p class="title">duration (average pr. week):</p>
+                <div class="select-box">
+                  <select class="form-control" (change)="onDurationHourChange($event.target.value, 'endurance')">
+                    <option default>--- Select ---</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="6">6 hours</option>
+                    <option value="7">7 hours</option>
+                    <option value="8">8 hours</option>
+                    <option value="9">9 hours</option>
+                    <option value="10">10 hours</option>
+                  </select>
+                  <select class="form-control" (change)="onDurationMinChange($event.target.value, 'strength')">
+                    <option default>--- Select ---</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onDurationHourChange($event.target.value, 'endurance')">
+                    <option default>--- Select ---</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="6">6 hours</option>
+                    <option value="7">7 hours</option>
+                    <option value="8">8 hours</option>
+                    <option value="9">9 hours</option>
+                    <option value="10">10 hours</option>
+                  </select>
+                  <select class="form-control" (change)="onDurationMinChange($event.target.value, 'strength')">
+                    <option default>--- Select ---</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onDurationHourChange($event.target.value, 'endurance')">
+                    <option default>--- Select ---</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="6">6 hours</option>
+                    <option value="7">7 hours</option>
+                    <option value="8">8 hours</option>
+                    <option value="9">9 hours</option>
+                    <option value="10">10 hours</option>
+                  </select>
+                  <select class="form-control" (change)="onDurationMinChange($event.target.value, 'strength')">
+                    <option default>--- Select ---</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                  </select>
+                </div>
+                <hr/>
+                <div class="select-box">
+                  <select class="form-control" (change)="onDurationHourChange($event.target.value, 'endurance')">
+                    <option default>--- Select ---</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="6">6 hours</option>
+                    <option value="7">7 hours</option>
+                    <option value="8">8 hours</option>
+                    <option value="9">9 hours</option>
+                    <option value="10">10 hours</option>
+                  </select>
+                  <select class="form-control" (change)="onDurationMinChange($event.target.value, 'strength')">
+                    <option default>--- Select ---</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <a (click)="PrevToStep1()" class="btn btn-grey"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-left fa-w-10 fa-lg"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path></svg> back </a>
+            <a class="btn btn-green-gradient" (click)="NextToStep3()">continue <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-right fa-w-10 fa-2x"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="step3" *ngIf="step_count == 3">
+    <div class="content-form h-100">
+      <div class="row">
+        <div class="col-12">
+          <div class="header mt-5 mb-3">
+            <h2>Training program inputs</h2>
+            <p class="mt-2">Step 3 of 3</p>
+            <h5>Individualizing the program</h5>
+          </div>
+          <div class="body step3">
+            <div class="description">
+              <p>The Prgram designer constructs the program with general percentage of 1 RM values. In other to change the percentage values to kg values, please enter for each exercise:</p>
+              <ul>
+                <li>The load (kg) <span>where you can conduct 1-8 reps with maximum effort (with zero Reps to failure).</span></li>
+                <li>Number of repetition <span>(from 1-8) you can conduct the exercise with the chosen load and with strict form.</span></li>
+              </ul>
+              <p><span>Your inputs are then used to calculate estimated 1 RM values for each exercise, that enables all the percentage values to be replaced with your individual kg values.</span></p>
+              <p>If you are unsure of some of the vaules, you may conduct a test set in these exercises:</p>
+              <ul>
+                <li><span>Perform the tests at the benginning of a session when you are fresh and recovered.</span></li>
+                <li><span>Perform a couple of light warm-up sets before the test set.</span></li>
+                <li><span>Perform multiple joint test exercises before single joint test exercises.</span></li>
+                <li><span>Perform multiple joint test sets in the lower rep reange (1-5), and single joint test sets in the upper rep range (4-8).</span></li>
+                <li><span>When conducting test sets for several exercises, it is perferable to split the tests over several days (for example over 2-3 days).</span></li>
+              </ul>
+            </div>
+            <div class="table">
+              <div class="theader">
+                <div class="th exercise">exercises</div>
+                <div class="th load">load</div>
+                <div class="th reps">reps</div>
+                <div class="th estimate">estimated 1 rm</div>
+              </div>
+              <div class="tbody">
+                <div class="tr" *ngFor="let item of estimated_rms">
+                  <div class="td exercise">{{item.text}}</div>
+                  <div class="td load">
+                    <input type="number" [(ngModel)]="item.load" class="form-control" placeholder="--- Type ---">
+                  </div>
+                  <div class="td reps">
+                    <select class="form-control" (change)="onChange($event.target.value, item.key)">
+                      <option default>--- Select ---</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                  <div class="td estimate">
+                    <input type="number" [(ngModel)]="item.result" class="form-control" placeholder="0" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer step3">
+            <a (click)="PrevToStep2()" class="btn btn-grey"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-left fa-w-10 fa-lg"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path></svg> back </a>
+            <a class="btn btn-green-gradient" (click)="Upload()">Upload values</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="interview-mobile" *showItDevice="['mobile']">
+  <owl-carousel-o [options]="customOptions" #owlCar>
+    <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+      <div class="header mb-3">
+        <h2>Training program inputs</h2>
+        <p class="mt-2">Step 1 of 3</p>
+        <h5>Manual Inputs</h5>
+      </div>
+      <div class="body step1">
+        <div class="input-group">
+          <input type="text" name="waist" id="waist" class="form-control" [(ngModel)]="basic_info.waist" (focus)="onFocus('waist')" (blur)="onBlur()">
+          <label [ngClass]="isFocus=='waist'?'focus':basic_info.waist!=''?'focus':''">Waist Circumference *</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="hip" id="hip" [(ngModel)]="basic_info.hip" class="form-control" (focus)="onFocus('hip')" (blur)="onBlur()">
+          <label [ngClass]="isFocus=='hip'?'focus':basic_info.hip!=''?'focus':''">Hip Circumference *</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="weight" id="weight" [(ngModel)]="basic_info.weight" class="form-control" (focus)="onFocus('weight')" (blur)="onBlur()">
+          <label [ngClass]="isFocus=='weight'?'focus':basic_info.weight!=''?'focus':''">Body Weight *</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="ratio" id="ratio" [(ngModel)]="basic_info.ratio" class="form-control" (focus)="onFocus('ratio')" (blur)="onBlur()">
+          <label [ngClass]="isFocus=='ratio'?'focus':basic_info.ratio!=''?'focus':''">Waist-to-Hip Ratio *</label>
+        </div>
+        <div class="select-group">
+          <label>Injury *</label>
+          <select name="injury" class="form-control" id="injury">
+            <option value="chest">Chest</option>
+            <option value="upper_back">Upper back</option>
+            <option value="lower_back">Lower back</option>
+            <option value="shoulders">Shoulders</option>
+            <option value="triceps">Triceps</option>
+            <option value="biceps">Biceps</option>
+            <option value="forearms">Forearms</option>
+            <option value="abs">Abs</option>
+            <option value="quads">Quads</option>
+            <option value="hamstrings">Hamstrings</option>
+            <option value="glutes">Glutes</option>
+            <option value="calves">Calves</option>
+          </select>
+        </div>
+      </div>
+      <div class="footer">
+        <a class="btn btn-green-gradient" (click)="owlCarNext(owlCar)">continue <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-right fa-w-10 fa-2x"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path></svg></a>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+      <div class="header step2 mb-3">
+        <h2>Training program inputs</h2>
+        <p class="mt-2">Step 2 of 3</p>
+        <h5>Other Activites</h5>
+      </div>
+      <div class="body step2">
+        <div class="categories">
+          <div [ngClass]="train_type==0?'active':''" (click)="onSelectTrainingType(0)"><p>endurance</p></div>
+          <div [ngClass]="train_type==1?'active':''" (click)="onSelectTrainingType(1)"><p>strength</p></div>
+          <div [ngClass]="train_type==2?'active':''" (click)="onSelectTrainingType(2)"><p>balance</p></div>
+          <div [ngClass]="train_type==3?'active':''" (click)="onSelectTrainingType(3)"><p>flexibility</p></div>
+        </div>
+        <div class="content" *ngFor="let item of activity_selects; let i = index;">
+          <div class="calendar" *ngIf="train_type == i">
+            <p>Training days (average pr. week):</p>
+            <div class="table-responsive">
+              <div class="table">
+                <div class="week-days">
+                  <div class="date">Mon</div>
+                  <div class="date">Tue</div>
+                  <div class="date">Wed</div>
+                  <div class="date">Thu</div>
+                  <div class="date">Fri</div>
+                  <div class="date">Sat</div>
+                  <div class="date">Sun</div>
+                </div>
+                <div class="wrapper-weeks">
+                  <div class="week">
+                    <div [ngClass]="item.days.mon?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'mon')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.tue?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'tue')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.wed?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'wed')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.thu?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'thu')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.fri?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'fri')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.sat?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'sat')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                    <div [ngClass]="item.days.sun?'checked day':'day'" (click)="CheckTrainingDay(item.key, 'sun')"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check fa-w-16 fa-lg"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" class=""></path></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="select-group" *ngIf="train_type == i">
+            <div class="select-box">
+              <p class="title">intensity (average pr. week):</p>
+              <ng-template #popContent>
+                <b>Low intensity:</b><br>
+                  - Light to very light rate of perceived exortion.<br>
+                  - Under 50 percent of your max heart rate. <br>
+                  - Like walking. <br>
+                <b>Medium intensity:</b> <br>
+                  - Medium to hard rate of perceived exertion. <br>
+                  - 50 to 70 percent of your max heart rate. <br>
+                  - Like jogging. <br>
+                <b>High intensity:</b><br>
+                  - Very hard to maximum rate of perceived exertion. <br>
+                  - Above 70 percent of your max heart rate. <br>
+                  - Like sprinting.
+              </ng-template>
+              <button type="button" class="btn mr-2" data-boundary="viewport" placement="bottom" [ngbPopover]="popContent">
+                <img src="/images/information-ikon.png"/>
+              </button>
+              <select class="form-control" (change)="onIntensityChange($event.target.value, item.key)">
+                <option default>--- Select ---</option>
+                <option value="low">Low</option>
+                <option value="moderate">Moderate</option>
+                <option value="vigorous">Vigorous</option>
+              </select>
+            </div>
+            <div class="select-box">
+              <p class="title">duration (average pr. week):</p>
+              <div class="d-flex">
+                <select class="form-control" (change)="onDurationHourChange($event.target.value, 'endurance')">
+                  <option default>--- Select ---</option>
+                  <option value="1">1 hour</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6 hours</option>
+                  <option value="7">7 hours</option>
+                  <option value="8">8 hours</option>
+                  <option value="9">9 hours</option>
+                  <option value="10">10 hours</option>
+                </select>
+                <select class="form-control" (change)="onDurationMinChange($event.target.value, 'strength')">
+                  <option default>--- Select ---</option>
+                  <option value="15">15 minutes</option>
+                  <option value="30">30 minutes</option>
+                  <option value="45">45 minutes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <a (click)="owlCarPrev(owlCar)" class="btn btn-grey"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-left fa-w-10 fa-lg"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path></svg> back </a>
+        <a class="btn btn-green-gradient" (click)="owlCarNext(owlCar)">continue <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-right fa-w-10 fa-2x"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path></svg></a>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:width==411?411:width==414?414:width==480?480:480'>
+      <div class="header mb-3">
+        <h2>Training program inputs</h2>
+        <p class="mt-2">Step 3 of 3</p>
+        <h5>Individualizing the program</h5>
+      </div>
+      <div class="body step3">
+        <div class="description">
+          <p>The Prgram designer constructs the program with general percentage of 1 RM values. In other to change the percentage values to kg values, please enter for each exercise:</p>
+          <ul>
+            <li>The load (kg) <span>where you can conduct 1-8 reps with maximum effort (with zero Reps to failure).</span></li>
+            <li>Number of repetition <span>(from 1-8) you can conduct the exercise with the chosen load and with strict form.</span></li>
+          </ul>
+          <p><span>Your inputs are then used to calculate estimated 1 RM values for each exercise, that enables all the percentage values to be replaced with your individual kg values.</span></p>
+          <p>If you are unsure of some of the vaules, you may conduct a test set in these exercises:</p>
+          <ul>
+            <li><span>Perform the tests at the benginning of a session when you are fresh and recovered.</span></li>
+            <li><span>Perform a couple of light warm-up sets before the test set.</span></li>
+            <li><span>Perform multiple joint test exercises before single joint test exercises.</span></li>
+            <li><span>Perform multiple joint test sets in the lower rep reange (1-5), and single joint test sets in the upper rep range (4-8).</span></li>
+            <li><span>When conducting test sets for several exercises, it is perferable to split the tests over several days (for example over 2-3 days).</span></li>
+          </ul>
+        </div>
+        <div class="table-responsive">
+          <div class="table">
+            <div class="theader">
+              <div class="th exercise">exercises</div>
+              <div class="th load">load</div>
+              <div class="th reps">reps</div>
+              <div class="th estimate">estimated 1 rm</div>
+            </div>
+            <div class="tbody">
+              <div class="tr" *ngFor="let item of estimated_rms">
+                <div class="td exercise">{{item.text}}</div>
+                <div class="td load">
+                  <input type="number" [(ngModel)]="item.load" class="form-control" placeholder="--- Type ---">
+                </div>
+                <div class="td reps">
+                  <select class="form-control" (change)="onChange($event.target.value, item.key)">
+                    <option default>--- Select ---</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+                <div class="td estimate">
+                  <input type="number" [(ngModel)]="item.result" class="form-control" placeholder="0" readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <a (click)="owlCarPrev(owlCar)" class="btn btn-grey"> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-left fa-w-10 fa-lg"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path></svg> back </a>
+        <a class="btn btn-green-gradient" (click)="Upload()">Upload values</a>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+</div>

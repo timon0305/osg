@@ -1,0 +1,447 @@
+osg-workout-detail {
+    display: block;
+    background: #ebebeb;
+    width: 100%;
+    padding-bottom: 20px;
+	.header {
+		background-image: linear-gradient(to bottom right, #ff8d00, #ffb20d);
+		padding: 30px 15px 0px 15px;
+		font-family: $third-font;
+		.status-tab {
+			position: relative;
+			&.chest {
+				background: url(/images/bench-press.jpg) 50% 100%;
+				background-size: cover;
+				width: 100%;
+				height: 350px;
+			}
+			.date-time {
+				position: absolute;
+				display: flex;
+				width: 100%;
+				padding: 20px 20px 0px 20px;
+				justify-content: space-between;
+				.date-navigation {
+					p {
+						font-weight: bold;
+						font-size: 20px;
+						color: #ff8d00;
+						&.date {
+							color: #000;
+							margin: 0;
+							font-size: 18px;
+						}
+					}
+					.back_button {
+						svg {
+							width: 20px;
+						}
+					}
+				}
+				.time-block {
+					display: flex;
+					background: #000;
+					border-radius: 20px;
+					height: 40px;
+					padding: 7px 15px 0px 15px;
+					margin-top: 12px;
+					img {
+						width: 25px;
+						height: 25px;
+						@media screen and (max-width:320px) {
+							width: 20px;
+							height: 20px;
+						}
+					}
+					p {
+						color: #fff;
+						margin-left: 5px;
+						margin-bottom: 0;
+						@media screen and (max-width:320px) {
+							font-size: 14px;
+						}
+					}
+				}
+			}
+			.action-tab {
+				position: absolute;
+				bottom: 0px;
+				display: flex;
+				width: 100%;
+				padding: 20px;
+				justify-content: space-between;
+				.type {
+					p {
+						margin: 0;
+						font-weight: bold;
+					}
+					h5 {
+						color: #ff8d00;
+						margin: 0;
+					}
+				}
+				.action {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-end;
+					width: 160px;
+					.button {
+						border: 2px solid #908c8c;
+						position: relative;
+						padding: 18px 25px 18px 25px;
+						display: block;
+						&.refresh {
+							padding: 18px;
+							svg {
+								height: 20px;
+								top: 9px;
+								left: 9px;
+							}
+						}
+						svg {
+							height: 30px;
+							position: absolute;
+							top: 4px;
+							left: 17px;
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: 320px) {
+			padding: 15px 15px 0px 15px;
+			.status-tab {
+				&.chest {
+					background: url(/images/bench-press.jpg) 50% 50%;
+					background-size: cover;
+					height: 175px;	
+				}
+				.date-time {
+					padding: 5px 10px 0px 10px;
+					.date-navigation {
+						p {
+							font-size: 13px;
+							&.date {
+								font-size: 14px;
+							}
+						}
+						.back_button {
+							svg {
+								width: 15px;
+							}
+						}
+					}
+					.time-block {
+						margin-top: 0;
+						height: 30px;
+						padding: 5px 5px 0px 5px;
+					}
+				}
+				.action-tab {
+					padding: 10px;
+					.type {
+						p { font-size: 14px;}
+						h5 { font-size: 14px; }
+					}
+					.action {
+						width: 120px;
+						.button { 
+							padding: 15px;
+							svg {
+								height: 25px;
+								top: 4px;
+								left: 9px;
+							}
+							&.refresh { 
+								padding: 15px;
+								svg {
+									height: 15px;
+									top: 8px;
+									left: 8px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: 360px) {
+			padding: 10px 15px 0px 15px;
+			.status-tab {
+				&.chest {
+					height: 160px;	
+				}
+				.date-time {
+					.time-block {
+						padding: 4px 10px 0px 10px;
+						font-size: 14px;
+						margin-top: 5px;
+						img {
+							width: 20px;
+							height: 20px;
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: 375px) {
+			@media (max-height: 812px) {
+				.status-tab {
+					&.chest {
+						height: 310px;
+					}
+				}
+			}
+			@media (max-height: 667px) {
+				.status-tab {
+					&.chest {
+						height: 175px;
+					}
+				}
+			}
+		}
+		@media (min-width: 412px) {
+			.status-tab {
+				&.chest {
+					height: 240px;
+				}
+				.date-time {
+					padding: 10px 20px 0px 20px;
+				}
+				.action-tab {
+					padding: 10px 20px
+				}
+			}
+		}
+	}
+	.container {
+		box-shadow: 0px 0px 15px 0px rgba(61, 47, 12, 0.15);
+		.card {
+			font-family: $third-font;
+			display: flex;
+			flex-direction: row;
+			overflow: hidden;
+			&.event {
+				padding: 20px;
+			}
+			.side-nav {
+				.item-group {
+					padding-top: 5px;
+					padding-bottom: 5px;
+					border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+					.item {
+						width: 120px;
+						text-align: left;
+						&.multi-line {
+							line-height: unset;
+							height: 50px;
+						}
+						.popover-body {
+							width: 200px;
+							max-height: 250px;
+							overflow-y: auto;
+						}
+					}
+				}
+			}
+			.siema {
+				.active {
+					background-image: linear-gradient(to bottom right, #ff8d00, #ffb20d);
+					.item-group {
+						border-right: none;
+					}
+				}
+			}
+			.item-title {
+				text-transform: uppercase;
+				line-height: 35px;
+				font-weight: bold;
+				text-align: center;
+				font-size: 11px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+				border-right: 1px solid rgba(0, 0, 0, 0.125);
+				&.start-title {
+					text-align: left;
+					padding-left: 10px;
+				}
+			}
+			.item-group {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+				border-right: 1px solid rgba(0, 0, 0, 0.125);
+				.item {
+					line-height: 35px;
+					width: 85px;
+					text-align: center;
+					font-size: 11px;
+					position: relative;
+					&.multi-line {
+						.btn {
+							top: 12px;
+						}
+					}
+					.btn {
+						position: absolute;
+						right: 5px;
+						background: transparent;
+						padding: 0;
+						top: 5px;
+						img {
+							width: 15px;
+						}
+					}
+				}
+			}
+			.form-progress {
+				flex: 1;
+			}
+			.form-buttons {
+				flex: 0.5;
+				display: flex;
+				flex-direction: column;
+				height: 100px;
+				justify-content: space-between;
+				padding-left: 20px;
+				.single-button {
+					padding: 9px;
+					text-align: center;
+					text-transform: uppercase;
+					&.finish {
+						background-image: linear-gradient(to bottom right, #8dcc3e, #67a815);
+						color: #fff;
+					}
+					&.reset {
+					    border: 1px solid #606060;
+						padding: 8px 9px;
+						svg {
+							width: 16px;
+						}
+					}
+				}
+			}
+			@media (min-width: 320px) {
+				&.event {
+					padding: 10px;
+				}
+				.item-title {
+					line-height: 25px;
+				}
+				.item-group {
+					.item {
+						line-height: 20px;
+						width: 78px;
+						padding-left: 5px;
+						padding-right: 5px;
+						input {
+							width: 100%;
+							height: 18px;
+							text-align: center;
+						}
+					}
+				}
+				.side-nav {
+					.item-group {
+						.item {
+							padding-left: 10px;
+							width: 130px;
+							.btn {
+								top: 0;
+								right: 0;
+							}
+							&.multi-line {
+								line-height: 20px;
+								height: auto;
+								.btn {
+									top: 0;
+									right: 0;
+								}
+							}
+						}
+					}
+				}
+				.form-buttons {
+					height: 80px;
+					.single-button {
+						padding: 5px;
+						&.reset {
+							padding: 3px 9px;
+						}
+					}
+				}
+			}
+			@media (min-width: 360px) {
+				.item-title {
+					line-height: 35px;
+				}
+				.item-group {
+					.item {
+						line-height: 30px;
+						width: 97px;
+						.btn {
+							top: 0px;
+						}
+						input {
+							height: 21px;
+						}
+					}
+				}
+				.side-nav {
+					.item-group {
+						.item {
+							width: 130px;
+							&.multi-line {
+								height: 30px;
+								line-height: 10px;
+								padding-top: 7px;
+								.btn {
+									top: 0px;
+								}
+							}
+						}
+					}
+				}
+			}
+			@media (min-width: 375px) {
+				.item-group {
+					.item {
+						width: 105px;
+					}
+				}
+				.side-nav {
+					.item-group {
+						.item {
+							width: 130px;
+						}
+					}
+				}
+			}
+			@media (min-width: 412px) {
+				&.event {
+					padding: 10px 20px;
+				}
+				.side-nav {
+					.item-group {
+						.item {
+							width: 125px;
+							padding-left: 10px;
+							.btn {
+								top: 3px;
+							}
+						}
+					}
+				}
+				.item-group {
+					.item {
+						width: 85px;
+					}
+				}
+			}
+		}
+	}
+	@import "workout-detail-progress";
+	@import "workout-detail-complete";
+	@import "numberic-slider-purple";
+	@import "numberic-slider-orange";
+	@import "numberic-slider-red";
+}

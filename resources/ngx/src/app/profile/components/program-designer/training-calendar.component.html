@@ -1,0 +1,440 @@
+<div class="training-program desktop" id="training-program" *showItDevice="['tablet','desktop']">
+  <div class="title">
+    <div class="col-12 col-lg col-xl-6 mb-4 mb-xl-0">
+      <h3>THE TRAINING PROGRAM: <span>{{first_program.name}}</span></h3>
+    </div>
+    <div class="col-12 col-sm-auto col-lg-auto">
+      <div class="control-slider">
+        <p>AUGUST 2018</p>
+        <a href="" class="btn-control prev"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+        <a href="" class="btn-control next"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="col-12 col-sm-auto col-lg-12 col-xl-auto">
+      <a href="" class="btn btn-green-gradient py-2">ADD TO YOUR CALENDAR</a>
+    </div>
+  </div>
+
+  <div class="conventions">
+    <p class="test-days"><span></span>Test days</p>
+    <p class="training-days"><span></span>Training days</p>
+  </div>
+
+  <div class="calendar">
+    <div class="week-days">
+      <div style="width: 50px;">Week</div>
+      <div class="col">Monday</div>
+      <div class="col">Tuesday</div>
+      <div class="col">Wednesday</div>
+      <div class="col">Thursday</div>
+      <div class="col">Friday</div>
+      <div class="col">Saturday</div>
+      <div class="col">Sunday</div>
+    </div>
+    <div class="wrapper-weeks">
+      <ng-container *ngFor="let week of weeks; let i=index">
+        <div class="week">
+          <div style="width: 50px;"><span>{{i+1}}</span></div>
+          <!-- <div class="day">
+            <div><span class="time">30</span></div>
+          </div> -->
+
+          <ng-container *ngFor="let plan of week; let j = index">
+            <div class="day {{plan == null ? '' : 'training-days'}} {{(plan != null &&i == 0) ? 'test-days' : ''}}" (click)="plan != null ? showModal(i, j) : null">
+              <div>
+                <span class="time">Jul 31</span>
+                <b>{{first_program.name}}</b>
+                <p>
+                  <ng-container *ngFor="let workout of plans">
+                    <ng-template [ngIf]="workout.id==plan">
+                      {{workout.body_parts}}
+                    </ng-template>
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- <div class="day">
+            <div><span class="time">Aug 1</span></div>
+          </div>
+
+          <div class="day training-days test-days">
+            <div>
+              <span class="time">2</span>
+              <b>GVT</b>
+              <p>Chest, shoulders, and triceps </p>
+            </div>
+          </div>
+
+          <div class="day">
+            <div><span class="time">3</span></div>
+          </div>
+
+          <div class="day training-days test-days">
+            <div>
+              <span class="time">4</span>
+              <b>GVT</b>
+              <p>Back, biceps, and abs</p>
+            </div>
+          </div>
+
+          <div class="day">
+            <div><span class="time">5</span></div>
+          </div> -->
+
+        </div>
+      </ng-container>
+
+      <!-- <div class="week">
+        <div style="width: 50px;"><span>1</span></div>
+
+        <div class="day">
+          <div><span class="time">6</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">7</span>
+            <b>GVT</b>
+            <p>Quads, hamstrings,and calves</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">8</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">9</span>
+            <b>GVT</b>
+            <p>Chest, shoulders, and triceps </p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">10</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">11</span>
+            <b>GVT</b>
+            <p>Back, biceps, and abs</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">12</span></div>
+        </div>
+
+      </div>
+
+      <div class="week">
+        <div style="width: 50px;"><span>1</span></div>
+
+        <div class="day">
+          <div><span class="time">13</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">14</span>
+            <b>GVT</b>
+            <p>Quads, hamstrings,and calves</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">15</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">16</span>
+            <b>GVT</b>
+            <p>Chest, shoulders, and triceps </p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">17</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">18</span>
+            <b>GVT</b>
+            <p>Back, biceps, and abs</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">19</span></div>
+        </div>
+
+      </div>
+
+      <div class="week">
+        <div style="width: 50px;"><span>1</span></div>
+
+        <div class="day">
+          <div><span class="time">20</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">21</span>
+            <b>GVT</b>
+            <p>Quads, hamstrings,and calves</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">22</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">23</span>
+            <b>GVT</b>
+            <p>Chest, shoulders, and triceps </p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">24</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">25</span>
+            <b>GVT</b>
+            <p>Back, biceps, and abs</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">26</span></div>
+        </div>
+
+      </div>
+
+      <div class="week">
+        <div style="width: 50px;"><span>1</span></div>
+
+        <div class="day">
+          <div><span class="time">27</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">28</span>
+            <b>GVT</b>
+            <p>Quads, hamstrings,and calves</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">29</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">30</span>
+            <b>GVT</b>
+            <p>Chest, shoulders, and triceps </p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">Aug 31</span></div>
+        </div>
+
+        <div class="day training-days">
+          <div>
+            <span class="time">Sep 1</span>
+            <b>GVT</b>
+            <p>Back, biceps, and abs</p>
+          </div>
+        </div>
+
+        <div class="day">
+          <div><span class="time">2</span></div>
+        </div>
+
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
+<div class="training-program mobile" *showItDevice="['mobile']">
+  <div class="title">
+    <div class="col-12 col-lg col-xl-5 mb-2 mb-xl-0">
+      <h3>THE TRAINING PROGRAM: <span>GVT</span></h3>
+    </div>
+    <div class="col-12 col-sm-auto col-lg-auto mb-4">
+      <div class="control-slider">
+        <p>AUGUST 2018</p>
+        <a href="" class="btn-control prev"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+        <a href="" class="btn-control next"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="responsive-calendar">
+    <div class="calendar">
+      <div class="week-days">
+        <div style="width: 30px;">Week</div>
+        <div class="date">Mon</div>
+        <div class="date">Tue</div>
+        <div class="date">Wed</div>
+        <div class="date">Thu</div>
+        <div class="date">Fri</div>
+        <div class="date">Sat</div>
+        <div class="date">Sun</div>
+      </div>
+      <div class="wrapper-weeks">
+        <ng-container *ngFor="let week of weeks; let i=index">
+          <div class="week">
+            <div style="width: 30px;"><span>{{i+1}}</span></div>
+
+            <ng-container *ngFor="let plan of week; let j = index">
+              <div class="day {{plan == null ? '' : 'training-days'}} {{(plan != null &&i == 0) ? 'test-days' : ''}}"  (click)="plan != null ? showModal() : null">
+                <div><span class="time">30</span></div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+          <!-- <div class="day training-days test-days">
+            <div><span class="time">31</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">1</span></div>
+          </div>
+          <div class="day training-days test-days">
+            <div><span class="time">2</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">3</span></div>
+          </div>
+          <div class="day training-days test-days">
+            <div><span class="time">4</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">5</span></div>
+          </div>
+        </div>
+        <div class="week">
+          <div class="day">
+            <div><span class="time">6</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">7</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">8</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">9</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">10</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">11</span></div>
+          </div>
+          <div class="day today">
+            <div><span class="time">12</span></div>
+          </div>
+        </div>
+        <div class="week">
+          <div class="day">
+            <div><span class="time">13</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">14</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">15</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">16</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">17</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">18</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">19</span></div>
+          </div>
+        </div>
+        <div class="week">
+          <div class="day">
+            <div><span class="time">20</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">21</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">22</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">23</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">24</span></div>
+          </div>
+          <div class="day training-days">
+            <div><span class="time">25</span></div>
+          </div>
+          <div class="day">
+            <div><span class="time">26</span></div>
+          </div>
+        </div>
+        <div class="week">
+          <div class="day">
+            <div><span class="time">27</span></div>
+          </div>
+          <div class="day training-days">
+            <div>
+              <span class="time">28</span>
+            </div>
+          </div>
+          <div class="day">
+            <div><span class="time">29</span></div>
+          </div>
+          <div class="day training-days">
+            <div>
+              <span class="time">30</span>
+            </div>
+          </div>
+          <div class="day">
+            <div><span class="time">31</span></div>
+          </div>
+          <div class="day training-days">
+            <div>
+              <span class="time">1</span>
+            </div>
+          </div>
+          <div class="day">
+            <div><span class="time">2</span></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    </div>
+    <div class="workout d-flex flex-row mb-4">
+      <div class="description d-flex flex-column">
+        <p class="workout_title">Upload to your<br>Calendar & workout log</p>
+      </div>
+      <div class="workout-button">
+        <a>upload</a>
+      </div>
+    </div>
+  </div>
+</div>

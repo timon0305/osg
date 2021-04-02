@@ -1,0 +1,162 @@
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Workout Summary</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-summary"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body collapse in show" id="card-summary">
+        <div class="text-group">
+            <label for="" class="group-title">chest:</label>
+            <div class="group-value">
+                <p>total target volume load*<span>1000</span></p>
+            </div>
+            <div class="group-value">
+                <p>total performed volume load* <span>1100</span></p>
+            </div>
+            <div class="group-value difference_plus">
+                <p>difference <span>+100</span></p>
+            </div>
+        </div>
+
+        <div class="text-group">
+            <label for="" class="group-title">shoulders:</label>
+            <div class="group-value">
+                <p>total target volume load*<span>880</span></p>
+            </div>
+            <div class="group-value">
+                <p>total performed volume load* <span>900</span></p>
+            </div>
+            <div class="group-value difference_plus">
+                <p>difference <span>+10</span></p>
+            </div>
+        </div>
+
+        <div class="text-group">
+            <label for="" class="group-title">Triceps:</label>
+            <div class="group-value">
+                <p>total target volume load*<span>880</span></p>
+            </div>
+            <div class="group-value">
+                <p>total performed volume load* <span>900</span></p>
+            </div>
+            <div class="group-value difference_minus">
+                <p>difference <span>-20</span></p>
+            </div>
+        </div>
+        
+        <div class="text-group boder-none">
+            <div class="group-title"><p><span>Total:</span><span class="total_amount">+90</span></p></div>
+            <div class="group-value">
+                <p>*(volumeload: set * reps * load)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Sleep level</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-sleep"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body collapse in show" id="card-sleep">
+        <osg-numberic-slider-purple></osg-numberic-slider-purple>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Energy Level</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-energy"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body collapse in show" id="card-energy">
+        <osg-numberic-slider-orange></osg-numberic-slider-orange>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Stress Level</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-stress"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body collapse in show" id="card-stress">
+        <osg-numberic-slider-red></osg-numberic-slider-red>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Injury Level</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-injury"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body injure-mode collapse in show" id="card-injury">
+        <p>injuries?</p>
+        <div class="btn-status">
+            <a class="btn" [ngClass]="active?'active':''" (click)="InjureSelect()">yes</a>
+            <a class="btn" [ngClass]="!active?'active':''" (click)="InjureDeselect()">no</a>
+        </div>
+        <div class="injure-group">
+            <p>which muscle group(s)</p>
+            <div class="injure-detail">
+                <div class="text">
+                    chest
+                </div>
+                <div class="slider">
+                    <ui-switch [(ngModel)]="chest" size="small" (change)="onChangeChest($event)"></ui-switch>
+                </div>
+            </div>
+            <div class="injure-detail">
+                <div class="text">
+                    shoulders
+                </div>
+                <div class="slider">
+                    <ui-switch [(ngModel)]="shoulders" size="small" (change)="onChangeShoulders($event)"></ui-switch>
+                </div>
+            </div>
+            <div class="injure-detail">
+                <div class="text">
+                    triceps
+                </div>
+                <div class="slider">
+                    <ui-switch [(ngModel)]="triceps" size="small" (change)="onChangeTriceps($event)"></ui-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <p>Workout notes</p>
+        </div>
+        <div class="card-collapse">
+            <span class="caret" data-toggle="collapse" data-target="#card-note"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="card-body collapse in show" id="card-note">
+        <p>NOTES</p>
+        <textarea placeholder="Write your notes here...."></textarea>
+    </div>
+</div>
+
+<button class="btn-finish" (click)="FinishWorkout()">Finish Workout</button>
+    

@@ -1,0 +1,494 @@
+<!-- <div class="row mb-2 align-items-center">
+
+    <input type="file" #file (change)="handleCommentFileInput($event.target.files)" accept="audio/*,video/*,image/*"
+        style="display:none;">
+    <input type="file" #postfile (change)="handlePostFileInput($event.target.files)" accept="audio/*,video/*,image/*"
+        multiple="multiple" style="display:none;">
+    <div class="col text-left">
+        <h3>newsfeed</h3>
+    </div>
+    <div class="col text-right"><a href="" class="edit"><img src="/assets/images/icons/icon-pencil.svg"
+                class="img-fluid" alt=""></a></div>
+</div>
+
+<div class="post-creator">
+    <div class="comment">
+        <div class="row no-gutters align-items-center d-flex">
+            <div class="col-auto p-0">
+                <figure>
+                    <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                </figure>
+            </div>
+            <div class="flex-fill"><textarea class="message" name="" id="parentPostMessage" cols="30" rows="2"
+                    (input)="parentComment.text = $event.target.value" [value]="parentComment.text"
+                    placeholder="What’s on your mind?"></textarea></div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="row align-items-center">
+            <div class="col-12 col-sm-12 col-lg-12">
+                <a class="add-media">
+                    <img src="/assets/images/icons/icon-camera.png" class="img-fluid mr-1" alt="">
+                    Photo/Video
+                </a>
+                <div class="custom-dropzone" ngx-dropzone [accept]="'audio/*,video/*,image/*'"
+                    (change)="onSelect($event)">
+                    <ngx-dropzone-label>
+                        Drag and drop images or videos to upload.
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of postFiles" [file]="f"
+                        [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-lg-12 mt-3 mt-lg-0">
+                <a (click)="onPostNewsfeed()" class="btn btn-block btn-black">
+                    POST</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post" *ngFor="let post of feed.posts; let i = index">
+    <div class="content">
+        <div class="author">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-2 p-0">
+                    <figure>
+                        <img src="{{post.author.imageUrl}}" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 p-0 m-0">
+                    <div class="summary">
+                        <a href="#">{{post.author.name}}</a>
+                        <span>{{post.postedAt}}</span>
+                    </div>
+                </div>
+                <div class="flex-fill text-right p-0 m-0 mr-3">
+                    <ng-template [ngIf]="post.editable">
+                        <div class="dropdown">
+                            <a class="toggle-popover" data-toggle="dropdown"><i class="fa fa-ellipsis-h"
+                                    aria-hidden="false"></i></a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" style="cursor:poiner;" (click)="onEditPost(i)">Edit post</a>
+                                <a class="dropdown-item" style="cursor:poiner;"
+                                    (click)="onDeletePost(post.postId)">Delete</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="post-content">
+            <ng-template [ngIf]="!post.isEdit">
+                <p [innerHTML]="post.content.text"></p>
+            </ng-template>
+            <ng-template [ngIf]="post.isEdit">
+                <textarea class="message" name="" cols="30" rows="2"
+                    (input)="parentComment.editText = $event.target.value" [value]="parentComment.editText"></textarea>
+                <br />
+                <a class="btn" (click)="onUpdatePost(post.postId)">Update</a>
+                <a class="btn" (click)="onCancelUpdatePost(i)">Cancel</a>
+            </ng-template>
+            <div class="photos">
+                <figure *ngFor="let url of post.content.photoUrls">
+                    <img src="{{url}}" />
+                </figure>
+            </div>
+            <div class="video">
+                <div class="col-12" *ngFor="let url of post.content.videoUrls">
+                    <video class="col-12" controls>
+                        <source [src]="url">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comments-box">
+        <div class="comment" *ngFor="let comment of post.comments">
+            <div class="row no-gutters">
+                <div class="col-auto mr-2 p-0">
+                    <figure>
+                        <img src="{{comment.author.imageUrl}}" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 m-0 p-0">
+                    <div class="speech-bubble">
+                        <a href="#">{{comment.author.name}}</a>
+                    </div>
+                </div>
+                <div class="flex-fill text-right p-0 m-0 mr-3">
+                    <ng-template [ngIf]="comment.editable">
+                        <div class="dropdown">
+                            <a class="toggle-popover" data-toggle="dropdown"><i class="fa fa-ellipsis-h"
+                                    aria-hidden="false"></i></a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" style="cursor:poiner;"
+                                    (click)="onDeletePost(comment.postId)">Delete</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="row">
+                <div class="comment-container">
+                    <p [innerHTML]="comment.content.text"></p>
+                    <div class="photos" *ngFor="let url of comment.content.photoUrls">
+                        <img src="{{url}}" />
+                    </div>
+                    <div class="video" *ngFor="let url of comment.content.videoUrls">
+                        <video class="col-12" controls>
+                            <source [src]="url">
+                        </video>
+                    </div>
+                </div>
+                <span class="commented-time">{{comment.postedAt}}</span>
+            </div>
+        </div>
+        <div class="comment-creator">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-3 p-0">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 mr-2 p-0">
+                    <div class="input-container">
+                        <input type="text" (keyup.enter)="onSendComment(post.postId, post.commentText);"
+                            [(ngModel)]="post.commentText" placeholder="Write a comment" />
+                        <a (click)="onSelectCommentFile(post.postId); file.click();" class="add-media"><img
+                                src="/assets/images/icons/icon-camera.png" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-12 col-lg-5 mt-3 mt-lg-0 mb-3">
+        <a href='/#/newsfeed' class="btn btn-block btn-black">Show More</a>
+    </div>
+</div> -->
+
+<div class="row mb-2 align-items-center">
+
+    <input type="file" #file
+    (change)="handleCommentFileInput($event.target.files)"
+    accept="audio/*,video/*,image/*"
+    style="display:none;"
+    >
+    <input type="file" #postfile
+    (change)="handlePostFileInput($event.target.files)"
+    accept="audio/*,video/*,image/*"
+    multiple="multiple"
+    style="display:none;"
+    >
+    <div class="col text-left"><h3>newsfeed</h3></div>
+    <div class="col text-right"><a href="" class="edit"><img src="/assets/images/icons/icon-pencil.svg" class="img-fluid" alt=""></a></div>
+</div>
+<ngx-spinner></ngx-spinner>
+<div class="post-creator">
+    <div class="comment">
+        <div class="row no-gutters align-items-center">
+            <div class="col-auto p-0">
+                <figure>
+                    <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                </figure>
+            </div>
+            <div class="col-9 p-0"><textarea [mention]="users" [mentionConfig]="mentionConfig" [mentionListTemplate]="mentionListTemplate" class="message" name="" id="parentPostMessage" cols="30" rows="2" (input) = "parentComment.text = $event.target.value" [value]="parentComment.text" placeholder="What’s on your mind?"></textarea></div>
+            
+            <ng-template #mentionListTemplate let-item="item">
+                <div style="display: flex;align-items: center;">
+                    <!-- <div style="width: 40px; height: 40px; background-color: gray; border-radius: 20px;"></div> -->
+                    <img style="width: 40px; height: 40px; border-radius: 20px;" src="/assets/images/icons/icon-account-gray.png">
+                    &nbsp;
+                    <span>{{item.name}}</span>
+                </div>
+            </ng-template>
+  
+        </div>
+    </div>
+    <div class="actions">
+        <div class="row align-items-center">
+            <div class="col-12 col-sm-12 col-lg-8">
+                <div (click)="postfile.click();"  class="add-media">
+                    <img src="/assets/images/icons/icon-camera.png" class="img-fluid mr-1" alt="">
+                    <a>Photo/Video ({{postFiles ? postFiles.length : 0}} files)</a>
+                </div>
+                <a class="added-file-cnt">Max File Size: 128MB</a>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-4 mt-3 mt-lg-0">
+                <a (click)="onPostNewsfeed()" class="btn btn-block btn-black">
+                    POST</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post" *ngFor="let post of feed.posts; let i = index">
+    <div class="content">
+        <div class="author">
+            <div class="row no-gutters align-items-center d-flex">
+                <div class="mr-2 p-0" style="width: 40px;">
+                    <figure>
+                        <img src="{{post.author.imageUrl}}" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="flex-fill p-0 m-0">
+                    <div class="summary">
+                        <a href="#">{{post.author.name}}</a>
+                        <span>{{post.postedAt}}</span>
+                    </div>
+                </div>
+                <div class="text-right p-0 m-0" style="width: 40px;">
+                    <ng-template [ngIf]="post.editable">
+                    <div class="dropdown">
+                        <a class="toggle-popover" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="false"></i></a>
+                
+                        <div class="dropdown-menu popover-menu dropdown-menu-right">
+                            <div class="menu-items">
+                                <a class="dropdown-item" style="cursor:pointer;" (click)="onEditPost(i)">Edit post</a>
+                                <a class="dropdown-item" style="cursor:pointer;" (click)="onDeletePost(post.postId)">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    </ng-template>
+                </div>
+                <!-- <div class="col-2 text-right p-0 m-0">
+                    <a href="javascript:void(0)" class="toggle-popover" data-toggle="collapse" href="#popover-id-{{i}}" role="button" aria-expanded="false" aria-controls="popover"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse popover-menu" id="popover-id-{{i}}">
+                    <ul>
+                        <li><a href="">Turn off notifications</a></li>
+                        <li><a (click)="onEditPost(i)">Edit post</a></li>
+                        <li><a (click)="onDeletePost(post.postId)">Delete</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        <div class="post-content">
+            <ng-template [ngIf]="!post.isEdit">
+                <p [innerHTML]="post.content.text"></p>
+            </ng-template>
+            <ng-template [ngIf]="post.isEdit">
+                <textarea class="message" name="" cols="30" rows="2" (input) = "parentComment.editText = $event.target.value" [value]="parentComment.editText"></textarea>
+                <br/>
+                <a class="btn" (click)="onUpdatePost(post.postId)">Update</a>
+                <a class="btn" (click)="onCancelUpdatePost(i)">Cancel</a>
+            </ng-template>
+            <div class="photos">
+                <figure *ngFor="let url of post.content.photoUrls">
+                    <img (click)="openModal(url)" src="{{url}}" />
+                </figure>
+            </div>
+            <div class="video">
+                <video controls *ngFor="let url of post.content.videoUrls" style="width: 100%;">
+                    <source [src]="url">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class="comments-box">
+        <div class="comment" *ngFor="let comment of post.comments; let j = index">
+            <div class="row no-gutters d-flex">
+                <div class="mr-2 p-0" style="width: 40px;">
+                    <figure>
+                        <img src="{{comment.author.imageUrl}}" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="m-0 p-0" style="flex: 1;">
+                    <div class="speech-bubble">
+                        <div class="comment-container">
+                                <a href="#">{{comment.author.name}}</a>
+                                <p [innerHTML]="comment.content.text"></p>
+                                <div class="photos" *ngFor="let url of comment.content.photoUrls">
+                                    <img (click)="openModal(url)" src="{{url}}" />
+                                </div>
+                                <div class="video" *ngFor="let url of comment.content.videoUrls">
+                                    <video class="col-12" controls>
+                                        <source [src]="url">
+                                    </video>
+                                </div>
+                        </div>
+                        <span>{{comment.postedAt}}</span>
+                    </div>
+                </div>
+                <div class="text-right p-0 m-0" style="width: 40px;">
+                    <ng-template [ngIf]="comment.editable">
+                        <div class="dropdown">
+                            <a class="toggle-popover" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-h" aria-hidden="false"></i>
+                            </a>
+
+                            <div class="dropdown-menu popover-menu dropdown-menu-right">
+                                <div class="menu-items">
+                                    <a class="dropdown-item" style="cursor:pointer;" (click)="onDeletePost(comment.postId)">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <!-- <div class="col-2 text-right p-0 m-0">
+                    <a href="" class="toggle-popover" data-toggle="collapse" href="#popover-id-comment-{{i}}-{{j}}" role="button" aria-expanded="false" aria-controls="popover"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse popover-menu" id="popover-id-comment-{{i}}-{{j}}">
+                    <ul>
+                        <li><a href="">Turn off notifications</a></li>
+                        <li><a href="">Edit post</a></li>
+                        <li><a (click)="onDeletePost(comment.postId)">Delete</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        <div class="comment-creator">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-3 p-0">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 mr-2 p-0">
+                    <div class="input-container">
+                        <input type="text" (keyup.enter)="onSendComment(post.postId, post.commentText);" [(ngModel)]="post.commentText" placeholder="Write a comment" />
+                        <a (click)="onSelectCommentFile(post.postId); file.click();" class="add-media"><img src="/assets/images/icons/icon-camera.png" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-12 col-lg-5 mt-3 mt-lg-0 mb-3">
+        <a href='/#/newsfeed' class="btn btn-block btn-black">Show More</a>
+    </div>
+</div>
+
+
+<div id="imgModal" class="slide-modal">
+    <span class="close cursor" (click)="closeModal()">&times;</span>
+    <div class="slide-modal-content">
+        <div class="img-slides">
+            <img src="{{imageUrl}}">
+        </div>
+    </div>
+  </div>
+
+<!-- <div class="post">
+    <div class="content">
+        <div class="author">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-2">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 col-sm-8 col-md-6 col-lg-8">
+                    <div class="summary">
+                        <a href="#">Nohman Janjua</a>
+                        <span>30 minutes ago</span>
+                    </div>
+                </div>
+                <div class="col text-right">
+                    <a href="javascript:void(0)" class="toggle-popover" data-toggle="collapse" href="#popover-id-2" role="button" aria-expanded="false" aria-controls="popover"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse popover-menu" id="popover-id-2">
+                    <ul>
+                        <li><a href="">Turn off notifications</a></li>
+                        <li><a href="">Edit post</a></li>
+                        <li><a href="">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>The weights are getting heavier little by little thanks to the autoregulation function!</p>
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <img src="/assets/images/feed-img-1.jpg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="col-12 col-sm-4">
+                    <img src="/assets/images/feed-img-2.jpg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="col-12 col-sm-4">
+                    <img src="/assets/images/feed-img-3.jpg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comments-box">
+        <div class="comment-creator">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-3">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col">
+                    <div class="input-container">
+                        <input type="text" placeholder="Write a comment" />
+                        <a href="" class="add-media"><img src="/assets/images/icons/icon-camera.png" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post">
+    <div class="content">
+        <div class="author">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-2">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col-8 col-sm-8 col-md-6 col-lg-8">
+                    <div class="summary">
+                        <a href="#">Nohman Janjua</a>
+                        <span>30 minutes ago</span>
+                    </div>
+                </div>
+                <div class="col text-right">
+                    <a href="javascript:void(0)" class="toggle-popover" data-toggle="collapse" href="#popover-id-3" role="button" aria-expanded="false" aria-controls="popover"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse popover-menu" id="popover-id-3">
+                    <ul>
+                        <li><a href="">Turn off notifications</a></li>
+                        <li><a href="">Edit post</a></li>
+                        <li><a href="">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>Video from todays chest workout. Can PT Nohman Janjua please give me feedback on my bench press technique?</p>
+            <div class="row">
+                <div class="col-12">
+                    <img src="/assets/images/feed-img-4.jpg" class="d-block img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comments-box">
+        <div class="comment-creator">
+            <div class="row no-gutters align-items-center">
+                <div class="col-auto mr-3">
+                    <figure>
+                        <img src="/assets/images/icons/icon-account-gray.png" class="img-fluid d-block mx-auto" />
+                    </figure>
+                </div>
+                <div class="col">
+                    <div class="input-container">
+                        <input type="text" placeholder="Write a comment" />
+                        <a href="" class="add-media"><img src="/assets/images/icons/icon-camera.png" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,142 @@
+osg-get-started{
+    display: block;
+    h3 {
+        @include section-title;
+		padding-top: 70px;
+    }
+    .articles-list{
+		&.desktop {
+			@extend .row;
+			@extend .no-gutters;
+			border: 1px solid #dadada;
+			margin-top: 10px;
+			margin-bottom: rem(40);
+			height: 100%;
+			background: #FFF;
+			.article{
+				@extend .col-12;
+				@extend .col-sm-6;
+				@extend .col-md-3;
+				background: #FFF;
+				border-right: solid 1px #c6c6c6;
+				padding: 45px 20px;
+				h4{
+					text-transform: uppercase;
+					font-family: $primary-font;
+					font-size: rem(18);
+					margin: 0px 0px 50px;
+					display: block;
+				}
+				.btn{
+					font-size: rem(14);
+					padding-top: 0.75rem;
+					padding-bottom: 0.75rem;
+					padding-right: 1.2rem;
+					padding-left: 1.2rem;
+					position: absolute;
+					bottom: 30px;
+				}
+				&.brand-box{
+					background: $black;
+					border: none;
+					figure{
+						margin: 10px auto;
+						display: block;
+						width: 80px;
+					}
+				}
+				&:last-child{
+					border: none;
+				}
+			}
+		}
+        &.mobile {
+			.owl-theme {
+				.owl-dots {
+					.owl-dot {
+						&.active {
+							span {
+								background: #ffa600;
+							}
+						}
+					}
+				}
+			}
+			.article {
+				background: #FFF;
+				border-right: solid 1px #c6c6c6;
+				padding: 45px 20px;
+				h4{
+					text-transform: uppercase;
+					font-family: $primary-font;
+					font-size: rem(18);
+					margin: 0px 0px 50px;
+					display: block;
+				}
+				.btn{
+					font-size: rem(14);
+					padding-top: 0.75rem;
+					padding-bottom: 0.75rem;
+					padding-right: 1.2rem;
+					padding-left: 1.2rem;
+					position: absolute;
+					bottom: 30px;
+				}
+				&.brand-box{
+					background: $black;
+					border: none;
+					figure{
+						margin: 10px auto;
+						display: block;
+						width: 80px;
+					}
+				}
+				&:last-child{
+					border: none;
+				}
+			}
+		}
+    }
+
+
+    &.secondary{
+        .articles-list{
+			&.desktop {
+				.article{
+					@extend .col-12;
+					@extend .col-md;
+					@include media-breakpoint-down(lg){
+						&:first-child{
+							flex: 0 0 100%;
+							max-width: 100%;
+						}
+					}
+					@include media-breakpoint-down(sm){
+						&:not(:first-child){
+							padding-bottom: 60px;
+							flex: 0 0 100%;
+							max-width: 100%;
+							border-right: none;
+						}
+					}
+				}
+			}
+        }
+    }
+
+    &.tertiary{
+        .articles-list{
+			&.desktop {
+				.article{                
+					max-width: 20%;
+					@include breakpoint(mobile){
+						max-width: 100%;
+					}
+					&:nth-child(1){
+						display: none;
+					}
+				}
+			}
+        }		
+    }
+}

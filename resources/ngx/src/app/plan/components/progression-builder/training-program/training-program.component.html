@@ -1,0 +1,218 @@
+<ngx-spinner></ngx-spinner>
+<div class="title" style="position: sticky;top: 70px;z-index: 100;">
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-sm-8">
+      <h2>The Training Program</h2>
+    </div>
+    <div class="col-12 col-sm-4 text-right">
+      <div class="control-slider">
+        <!-- <a href="javascript:;" class="btn-control search"><i class="fa fa-search" aria-hidden="true"></i></a> -->
+        <a (click)="zoomIn()" class="btn-control zoom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search-plus fa-w-16 fa-lg"><path fill="currentColor" d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z" class=""></path></svg></a>
+        <a (click)="zoomOut()" class="btn-control zoom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search-minus fa-w-16 fa-lg"><path fill="currentColor" d="M304 192v32c0 6.6-5.4 12-12 12H124c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z" class=""></path></svg></a>
+        <a (click)="moveRight()" class="btn-control prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        <a (click)="moveLeft()" class="btn-control next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div #trainingProgramWrapper class="training-program-wrapper" [ngStyle]="{'zoom':rate}"><!-- for test before JS (margin-left: -650px or -1300px... etc) -->
+  <!-- <div class="thead">
+    <div class="row no-gutters">
+      <div class="week">
+        Week
+      </div>
+      <div class="day">Monday</div>
+      <div class="day">Tuesday</div>
+      <div class="day">Wednesday</div>
+      <div class="day">Thursday</div>
+      <div class="day">Friday</div>
+      <div class="day">Saturday</div>
+      <div class="day">Sunday</div>
+    </div>
+  </div> -->
+  <div *ngFor="let week of weeks; let ind = index;" >
+    <div class="thead">
+      <div class="row no-gutters">
+        <div class="week">Week {{ind + 1}}</div>
+        <ng-template  *ngFor="let day of week; let j = index" [ngIf]="day">
+          <div class="day">
+            {{days[j]}}
+          </div>
+        </ng-template>
+    </div>
+    <div class="tbody">
+      <div class="row no-gutters" style="flex-flow: row;">
+        <div class="week">
+          <div>
+            <span>{{ind+1}}</span>
+            <p>Type of week:</p>
+            <div class="dropdown">
+              <button class="btn btn-border dropdown-toggle btn-block" type="button" id="dropdownMenuButton1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{
+                  week_types[ind]
+                }}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <a class="dropdown-item" (click)="setWeekType(ind, 0)">Test & training week</a>
+                <a class="dropdown-item" (click)="setWeekType(ind, 1)">Training week</a>
+                <a class="dropdown-item" (click)="setWeekType(ind, 2)">Deload week</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template *ngFor="let day of week; let j = index" [ngIf]="day">
+          <div  class="day">
+            <h6><span>Workout {{getPlanId(day)}} : &nbsp;</span>{{getPlanName(day)}}</h6>
+            <!-- table 1:1 start -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Body part</th>
+                  <th>Exercise</th>
+                  <th>Set</th>
+                  <th>(Target) Reps</th>
+                  <th>(Target) Reps to failure</th>
+                  <th>Load <br>(% of 1 RM)</th>
+                  <th>(Target) Volume Load</th>
+                  <th>Method</th>
+                  <th>Tempo (sec)<br>(down-hold-up)</th>
+                  <th>Rest Period (min:sec)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-template [ngIf]="data.length">
+                  <ng-container *ngFor="let formData of data[ind][j].body_parts;let m=index" >
+                    <tr [attr.data-index]="0" [attr.data-exercise-index]="0" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                      <td [attr.rowspan]="formData.row" [style.background]="formData.name == cur_body_part ? 'rgb(181, 239, 255)' : '#fff'">{{formData.name}}</td>
+                      <td [attr.rowspan]="formData.exercises[0].row">{{formData.exercises[0].name}}
+                        <a class="add fa-add-tbl" (click)="addRecord($event)">+</a>
+                        <a class="remove fa-rmv-tbl"  (click)="removeRecord($event)">-</a>
+                      </td>
+                      <td>1</td>
+                      <td><input class="form-control" type="text" value="{{formData.exercises[0].data[0].reps}}" (change)="changeOption($event, 'reps')"></td>
+                      <td>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p style="padding-right: 5px;font-size: 15px;margin: 0;">@</p>
+                          <input class="form-control" style="margin-top: 3px;padding-top: 8px;" type="text" value="{{formData.exercises[0].data[0].rtf}}" (change)="changeOption($event, 'rtf')">
+                        </div>
+                      </td>
+                      <td>{{formData.exercises[0].data[0].rm}}</td>
+                      <td>{{(formData.exercises[0].data[0].rm * formData.exercises[0].data[0].reps).toFixed(0)}}</td>
+                      <td>
+                        <select class="form-control" (change)="changeOption($event, 'method')">
+                          <option *ngFor="let option of options; let i=index" [value]="i"
+                          [attr.selected]="formData.exercises[0].data[0].method==i ? true : null">{{option}}</option>
+                        </select>
+                      </td>
+                      <td><input type='text' mask="0-0-0-0" class="form-control" placeholder="---" value="{{formData.exercises[0].data[0].tempo}}" (change)="changeOption($event, 'tempo')" style="min-width: 75px;"></td>
+                      <td><input type='text' mask="0:00" class="form-control" placeholder=":" value="{{formData.exercises[0].data[0].rest}}" (change)="changeOption($event, 'rest')"></td>
+                    </tr>
+                    <ng-container *ngFor="let item of formData.exercises[0].data | slice : 1; let i = index">
+                      <tr [attr.data-index]="i+1" [attr.data-exercise-index]="0" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                        <td>{{i+2}}</td>
+                        <td><input class="form-control" type="text" value="{{item.reps}}" (change)="changeOption($event, 'reps')"></td>
+                        <td>
+                          <div class="d-flex justify-content-center align-items-center">
+                            <p style="padding-right: 5px;font-size: 15px;margin: 0;">@</p>
+                            <input class="form-control" style="margin-top: 3px;padding-top: 8px;" type="text" value="{{item.rtf}}" (change)="changeOption($event, 'rtf')">
+                          </div>
+                        </td>
+                        <td>{{item.rm}}</td>
+                        <td>{{(item.rm * item.reps).toFixed(0)}}</td>
+                        <td>
+                          <select class="form-control" (change)="changeOption($event, 'method')">
+                            <option *ngFor="let option of options; let i=index" [value]="i"
+                            [attr.selected]="item.method==i ? true : null">{{option}}</option>
+                          </select>
+                        </td>
+                        <td><input type='text' mask="0-0-0-0" class="form-control" placeholder="---" value="{{item.tempo}}" (change)="changeOption($event, 'tempo')" style="min-width: 75px;"></td>
+                        <td><input type='text' mask="0:00" class="form-control" placeholder=":" value="{{item.rest}}" (change)="changeOption($event, 'rest')"></td>
+                      </tr>
+                    </ng-container>
+                    <ng-container *ngFor="let exercise of formData.exercises | slice:1; let n=index">
+                      <tr [attr.data-index]="0" [attr.data-exercise-index]="n+1" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                        <td [attr.rowspan]="exercise.row">{{exercise.name}}
+                          <a class="add fa-add-tbl" (click)="addRecord($event)">+</a>
+                          <a class="remove fa-rmv-tbl"  (click)="removeRecord($event)">-</a>
+                        </td>
+                        <td>1</td>
+                        <td><input class="form-control" type="text" value="{{exercise.data[0].reps}}" (change)="changeOption($event, 'reps')"></td>
+                        <td>
+                          <div class="d-flex justify-content-center align-items-center">
+                            <p style="padding-right: 5px;font-size: 15px;margin: 0;">@</p>
+                            <input class="form-control" style="margin-top: 3px;padding-top: 8px;" type="text" value="{{exercise.data[0].rtf}}" (change)="changeOption($event, 'rtf')">
+                          </div>
+                        </td>
+                        <td>{{exercise.data[0].rm}}</td>
+                        <td>{{(exercise.data[0].rm * exercise.data[0].reps).toFixed(0)}}</td>
+                        <td>
+                          <select class="form-control"  (change)="changeOption($event, 'method')">
+                            <option *ngFor="let option of options; let i=index" [value]="i"
+                            [attr.selected]="exercise.data[0].method==i ? true : null">{{option}}</option>
+                          </select>
+                        </td>
+                        <td><input type='text' mask="0-0-0-0" class="form-control" placeholder="---" value="{{exercise.data[0].tempo}}" (change)="changeOption($event, 'tempo')" style="min-width: 75px;"></td>
+                        <td><input type='text' mask="0:00" class="form-control" placeholder=":" value="{{exercise.data[0].rest}}" (change)="changeOption($event, 'rest')"></td>
+                      </tr>
+                      <ng-container *ngFor="let item of exercise.data | slice : 1; let i = index">
+                        <tr [attr.data-index]="i+1" [attr.data-exercise-index]="n+1" [attr.data-bodypart-index]="m" [attr.data-week-index]="ind" [attr.data-day-index]="j">
+                          <td>{{i+2}}</td>
+                          <td><input class="form-control" type="text" value="{{item.reps}}" (change)="changeOption($event, 'reps')"></td>
+                          <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                              <p style="padding-top: 8px;padding-right: 5px;padding-left: 4px;font-size: 15px;">@</p>
+                              <input class="form-control" style="margin-top: 3px;padding-top: 8px;" type="text" value="{{item.rtf}}" (change)="changeOption($event, 'rtf')">
+                            </div>
+                          </td>
+                          <td>{{item.rm}}</td>
+                          <td>{{(item.rm * item.reps).toFixed(0)}}</td>
+                          <td>
+                            <select class="form-control" (change)="changeOption($event, 'method')">
+                              <option *ngFor="let option of options; let i=index" [value]="i"
+                              [attr.selected]="item.method==i ? true : null">{{option}}</option>
+                            </select>
+                          </td>
+                          <td><input type='text' mask="0-0-0-0" class="form-control" placeholder="---" value="{{item.tempo}}" (change)="changeOption($event, 'tempo')" style="min-width: 75px;"></td>
+                          <td><input type='text' mask="0:00" class="form-control" placeholder=":" value="{{item.rest}}" (change)="changeOption($event, 'rest')"></td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-template>
+              </tbody>
+              <tfoot>
+                <ng-template [ngIf]="data.length">
+                  <ng-container *ngFor="let bodypart of data[ind][j].body_parts;let m=index" >
+                    <tr>
+                      <td>{{bodypart.name}}</td>
+                      <td colspan="2">Total Volume</td>
+                      <td>{{bodypart.totalReps}}</td>
+                      <td>Average Intensity</td>
+                      <td>{{(bodypart.totalRm / bodypart.totalExercise).toFixed(2)}}</td>
+                      <td>Tot. Volume Load</td>
+                      <td>{{bodypart.totalLoad.toFixed(2)}}</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </ng-container>
+                </ng-template>
+              </tfoot>
+            </table>
+            <!-- table 1:1 end -->
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <!-- <div class="tfooter">
+        <div class="row no-gutters">
+            <div class="footer-cell">
+                <a class="add" href=""><span>+</span> Add Week</a>
+                <a class="remove" href=""><span>-</span> Delete Week</a>
+            </div>
+        </div>
+    </div> -->
+  </div>
+</div>

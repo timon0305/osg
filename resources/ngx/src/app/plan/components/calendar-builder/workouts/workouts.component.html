@@ -1,0 +1,121 @@
+<div class="desktop-workout" (drop)="drop($event)" (dragover)="allowDrop($event)">
+   <h2 style="height: 28px">Workouts:{{message?.text }}</h2>
+   <ngx-spinner></ngx-spinner>
+   <div class="container-box" *ngIf="cnt_workout != 0"  style="border-bottom: solid 0px #a9a9a9;">
+      <div class="subtitle">
+         <h3>Workout <span *ngIf="workout_number != null">{{workout_number}}</span></h3>
+      </div>
+      <div class="table-responsive">
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>Exercise</th>
+                  <th colspan="2">Volume</th>
+                  <th colspan="2">Intensity</th>
+                  <th>
+                    <ng-template #popTitle4Set>
+                      -Straight set: is an ordinary set where you do a set of one exercise, rest and proceed to the next set.<br>
+                      -Warm up set: perform one or several sets with low weight and intensity prior to your work sets.<br>
+                      -Tets AMRAP set: is a test setwhere you perform as many reps as possible with maximum effort, used to calculate your one repetition maximum (1 RM).<br>
+                      -Pyramide set: is a collection of sets, of the same exercise, that starts with a light weight and higher reps, building up to heavier weight and fewer reps, or vice versa.<br>
+                      -Super set: when doing two exercises that target opposing muscles in a row with minimal rest between them.<br>
+                      -Giant set: is a circuit of three or more exercises for the same muscle group performed one after another with little to no rest in between.<br>
+                      -Pre-exhaust set: when doing an isolation or single-joint exercise followed by one compound or multiple-joint movement.<br>
+                      -Drop set: performing multiple sets of an exercise to technical failure with successively lighter loads and little to no rest
+                    </ng-template>
+                    <i class="fa fa-info-circle"
+                       placement="bottom"
+                       [ngbPopover]="popTitle4Set"
+                       style="font-size: 24px;cursor: pointer"></i>
+                  </th>
+                  <th style="background-color:white;">
+                    <ng-template #popTitle4Time>
+                      The example “3-0-2-1”, means 3 seconds lowering the load (eccentric), 0 seconds in the bottom position (stretch), 2 seconds raising the load (concentric), and 1 second at the top position (peak).
+                    </ng-template>
+                    <i class="fa fa-info-circle"
+                       placement="bottom"
+                       [ngbPopover]="popTitle4Time"
+                       style="font-size: 24px;cursor: pointer"></i>
+                  </th>
+                  <th>
+                    <ng-template #popTitle4Period>
+                      Rest period between sets is measured in seconds and minutes.<br>
+                      Short rest periods between sets that activate the same primary muscle(s) will reduce the load (% of 1 RM) in the second set due to accumulated fatigue.
+                    </ng-template>
+                    <i class="fa fa-info-circle"
+                       placement="bottom"
+                       [ngbPopover]="popTitle4Period"
+                       style="font-size: 24px;cursor: pointer"></i>
+                  </th>
+               </tr>
+               <tr>
+                  <th>
+                    <ng-template #popTitle4Movement>
+                      Multi-joint exercises are movements that activate several muscles and generate a lot of strength, and single-joint exercises or isolation exercises engage a single or fewer muscle group(s).<br>
+                      Exercises provide the necessary stress and stimulus in order for recovery and adaption to occur.<br>
+                      Multi-joint barbell exercises disrupts the homeostasis more than multi-joint dumbbell exercises, followed by multi-joint machine and cable exercises.
+                    </ng-template>
+                    <i class="fa fa-info-circle"
+                       placement="bottom"
+                       [ngbPopover]="popTitle4Movement"
+                       style="font-size: 24px;cursor: pointer"></i>
+                  </th>
+                  <th>Set</th>
+                  <th>Reps</th>
+                  <th>RTF</th>
+                  <th>% of 1 RM</th>
+                  <th>Method</th>
+                  <th>Tempo (sec)</th>
+                  <th>Rest period <br> (min : sec)</th>
+               </tr>
+            </thead>
+            <tbody>
+               <!-- 1:1 -->
+               <ng-container *ngFor="let exercise_data of exercise_list; let exercise_index=index" >
+                  <tr *ngFor="let exercise of exercise_data.data; let i=index" [attr.data-index]="i" [attr.data-exercise-index]="exercise_index">
+                     <td [ngStyle]="{'background-color':exercise_data.selected==1?'#f79d0c':'white'}">
+                        <label *ngIf="i == 0" (click)="onSelectExercise(exercise_index)"
+                           [attr.data-index]="i"
+                           [attr.data-exercise-index]="exercise_index"
+                        >{{exercise_data.name}}</label>
+                        <ng-container *ngIf="i == exercise_data.data.length-1"><a class="add fa-add-tbl" (click)="addRecord($event)">+</a><a class="remove fa-rmv-tbl"  (click)="removeRecord($event)">-</a></ng-container>
+                     </td>
+                     <td>{{i+1}}</td>
+                     <td><input class="form-control" type="text" value="{{exercise.reps}}" (change)="changeOption($event, 'reps')"></td>
+                     <td><input class="form-control" type="text" value="{{exercise.rtf}}" (change)="changeOption($event, 'rtf')"></td>
+                     <td>{{exercise.rm}}<input type="hidden" value="{{exercise.rm}}" class="form-control"></td>
+                     <td>
+                        <img src="images/link.png" *ngIf="getLinked(exercise_data, exercise_index, exercise, i)" class="link-image">
+                        <select class="form-control" (change)="changeOption($event, 'method')" [ngStyle]="{'background':exercise.method==3?'#b5e61d':'white'}">
+                           <option *ngFor="let option of options; let i=index" [value]="i"
+                           [attr.selected]="exercise.method==i ? true : null">{{option}}</option>
+                        </select>
+                     </td>
+                     <td><input type='text' mask="0-0-0-0" class="form-control" placeholder="---" value="{{exercise.tempo}}"  (change)="changeOption($event, 'tempo')"></td>
+                     <td><input type='text' mask="0:00" class="form-control" placeholder=":" value="{{exercise.rest}}"  (change)="changeOption($event, 'rest')"></td>
+                  </tr>
+               </ng-container>
+            </tbody>
+         </table>
+      </div>
+      <div class="actions">
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <a class="btn btn-gray" (click)="onMoveUp()" style="margin-left: 0px">Move Up</a>
+            <a class="btn btn-gray" (click)="onMoveDown()" style="margin-left: 10px">Move Down</a>
+          </div>
+          <div>
+            <a class="btn btn-black" (click)="onSaveWorkout()"><img alt="" src="images/save.png">&nbsp;SAVE WORKOUT</a>
+            <a class="btn btn-gray" *ngIf="curWorkout!=null" (click)="onDeleteWorkout()" style="margin-left: 10px">DELETE</a>
+            <a class="btn btn-black" (click)="onNewWorkout()" style="margin-left: 10px"><span>+</span>&nbsp;NEW</a>
+          </div>
+        </div>
+      </div>
+   </div>
+   <div class="container-box container-new" *ngIf="cnt_workout == 0">
+      <img alt="" class="mx-auto d-block mb-1" src="images/squat.png">
+      <div class="new-title">Add Exercise</div>
+      <div class="new-sub-title">Drag and drop an exercise.</div>
+   </div>
+   <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
+</div>

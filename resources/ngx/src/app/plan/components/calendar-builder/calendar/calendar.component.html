@@ -1,0 +1,62 @@
+<div class="desktop-calendar" *showItDevice="['tablet','desktop']">
+    <h2 style="height: 28px">
+      Calendar:
+      <ng-template #popTitle4Cal>
+        Drag and drop the saved workouts on the desired days, and choose the length of the program/number of weeks.<br>
+        The test AMRAP set(s) in the test exercise(s) will only stick to the first and last week.<br>
+        The other weeks will automatically have ordinary set(s) in the test exercises.<br>
+        You may change the method and other variables in the Progression builder.
+      </ng-template>
+      <i class="fa fa-info-circle"
+         placement="bottom"
+         [ngbPopover]="popTitle4Cal"
+         style="font-size: 24px;cursor: pointer"></i>
+    </h2>
+    <div class="container-box" style="border-bottom: solid 0px #a9a9a9;" *ngIf="workout_list.length != 0">
+        <div class="subtitle">
+            <h3>Saved workouts</h3>
+        </div>
+        <div class="workouts-list" *ngIf="calendarWorkoutDrag == 0">
+            <div class="workout" draggable="true" style="cursor: pointer"
+                 *ngFor="let workout of workout_list; let workout_index=index"
+                 [attr.data-workout-index]="workout_index"
+                 (click)="onChangeWorkout(workout, workout_index + 1)"
+                 (dragstart)="dragWorkout($event)"><span>{{workout_index+1}}</span> {{workout.body_parts}}</div>
+        </div>
+        <div class="workouts-list-drag" *ngIf="calendarWorkoutDrag == 1" (drop)="dropWorkoutCalendar($event)" (dragover)="allowDropWorkoutCalendar($event)">
+            Drop here to remove.
+        </div>
+        <div class="table-responsive">
+            <table class="table" style="border-bottom: 1px solid #d8ddd1;">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>MON</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                        <th>Sun</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let calendar of calendar_list; let week_row=index">
+                        <td>{{week_row+1}}</td>
+                        <td *ngFor="let day of calendar; let day_index=index"  [attr.data-week-index]="week_row"  [attr.data-day-index]="day_index" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                            <span *ngIf="day != NULL" [attr.data-week-index]="week_row"  [attr.data-day-index]="day_index" draggable="true" (dragstart)="dragWorkoutCalendar($event)">{{day}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="actions">
+            <a (click)="onAddWeek()" class="btn btn-black"><span>+</span> ADD WEEK</a>
+            <a (click)="onRemoveWeek()" class="btn btn-gray">REMOVE WEEK</a>
+        </div>
+    </div>
+    <div class="container-box container-new" *ngIf="workout_list.length == 0">
+        <img alt="" class="mx-auto d-block mb-1" src="images/squat.png">
+        <div class="new-title">Your Workouts</div>
+        <div class="new-sub-title">Save an exercise to make your workouts appear here.</div>
+     </div>
+</div>

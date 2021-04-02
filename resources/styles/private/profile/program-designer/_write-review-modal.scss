@@ -1,0 +1,100 @@
+.review-modal{
+    .modal-content{
+        background: #f5f5f5;
+        padding: 20px 30px 40px;
+        // max-width: 800px;
+        @media (min-width: 320px) {
+            top: 150px;
+        }
+        @media (min-width: 1280px) {
+            top: 0;
+        }
+        osg-program-designer-write-review-modal{
+            .modal-header{
+                border-bottom: solid 1px #cfcfcf;
+                padding-left: 0px;
+                h4{
+                    font-size: rem(20);
+                    font-family: $secondary-font;
+                    font-weight: bold;
+                }
+                .close{
+                    border-radius: 100px;
+                    background: #e3e3e3;
+                    width: 38px;
+                    height: 38px;
+                    line-height: 28px;
+                    padding: 0px;
+                    color: #afafaf;
+                    opacity: 1;
+                    text-shadow: none;
+                }
+            }
+            .modal-body{
+                padding-left: 0px;
+                padding-right: 0px;
+                // overflow-y: auto;
+                // height: 340px;
+                border-bottom: solid 2px #dadada;
+                padding-bottom: 0px;
+                .section{
+                    background: #f5f5f5;
+                    h6{
+                        font-family: $secondary-font;
+                        font-weight: bold;
+                        font-size: 1rem;
+                        // text-transform: uppercase;
+                        color: #000;
+                        span{
+                            color: $yellow;
+                            display: inline-block;
+                        }
+                    }
+                    textarea{
+                        width: 100%;
+                        height: 200px;
+                        resize: none;
+                        border: none;
+                    }
+                    .rating{
+                        font-size: 10px;
+                        color: #b7b7b7;
+                        align-items: center;
+                        justify-content: flex-start;
+                        display: flex;
+                        margin-bottom: 5px;
+                        text-align: center;
+                        span{
+                            color: #b7b7b7;
+                            cursor: pointer;
+                            font-size: 14px;
+                            &.excellent{
+                                color: #4b870a;
+                            }
+                            &.good{
+                                color: $dark-green;
+                            }
+                            &.middle{
+                                color: $orange;
+                            }
+                            &.worse{
+                                color: #ff4700;
+                            }
+                            &.worst{
+                                color: #980000;
+                            }
+                        }
+                        p{
+                            display: inline-block;
+                            margin-left: 5px;
+                            margin-bottom: 0;
+                            font-weight: bold;
+                            font-size: 1rem;
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

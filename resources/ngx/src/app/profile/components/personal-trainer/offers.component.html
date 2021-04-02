@@ -1,0 +1,101 @@
+<div class="title">
+    <h3>my offers</h3>
+</div>
+<div class="offers-container" *showItDevice="['tablet','desktop']">
+    <div class="offer">
+        <div class="content-offer">
+            <header>
+                <figure>
+                    <img alt="" class="img-fluid d-block mx-auto" src="/assets/images/logo.png">
+                </figure>
+            </header>
+            <div class="description">
+                <h4>pt basic</h4>
+                <span>5 hours</span>
+            </div>
+            <div class="pricing">
+                <span>kr 2 500, -</span>
+                <button class="btn btn-yellow-gradient btn-block">purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="content-offer">
+            <header>
+                <figure>
+                    <img alt="" class="img-fluid d-block mx-auto" src="/assets/images/logo.png">
+                </figure>
+            </header>
+            <div class="description">
+                <h4>pt Premium</h4>
+                <span>10 hours</span>
+            </div>
+            <div class="pricing">
+                <span>kr 4 700, -</span>
+                <button class="btn btn-yellow-gradient btn-block">purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="content-offer">
+            <header>
+                <figure>
+                    <img alt="" class="img-fluid d-block mx-auto" src="/assets/images/logo.png">
+                </figure>
+            </header>
+            <div class="description">
+                <h4>pt pro</h4>
+                <span>15 hours</span>
+            </div>
+            <div class="pricing">
+                <span>kr 6 750, -</span>
+                <button class="btn btn-yellow-gradient btn-block">purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="content-offer">
+            <header>
+                <figure>
+                    <img alt="" class="img-fluid d-block mx-auto" src="/assets/images/logo.png">
+                </figure>
+            </header>
+            <div class="description">
+                <h4>pt Business</h4>
+                <span>20 hours</span>
+            </div>
+            <div class="pricing">
+                <span>kr 8 600, -</span>
+                <button class="btn btn-yellow-gradient btn-block">purchase</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offers-container" *showItDevice="['mobile']">
+    <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let offer of offers">
+            <ng-template carouselSlide [width]='width==320?320:width==360?360:width==375?375:width==384?384:412'>
+                <div class="offer">
+                    <div class="content-offer">
+                        <header>
+                            <figure>
+                                <img alt="" class="img-fluid d-block mx-auto" src="{{offer.src}}">
+                            </figure>
+                        </header>
+                        <div class="description">
+                            <h4>{{offer.title}}</h4>
+                            <span>{{offer.time}} hours</span>
+                        </div>
+                        <div class="pricing">
+                            <span>kr {{offer.cost}}, -</span>
+                            <button class="btn btn-yellow-gradient btn-block">purchase</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>    
+</div>

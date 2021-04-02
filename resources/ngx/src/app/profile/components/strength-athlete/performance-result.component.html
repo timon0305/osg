@@ -1,0 +1,64 @@
+<div class="detail-title text-center">
+    <h4>{{title}}</h4>
+    <p *ngIf="type=='program'">Information</p>
+    <p *ngIf="type!='program'">Text exercise</p>
+</div>
+<div class="row no-gutters text-center" *ngIf="type=='program'">
+    <div class="col-12 col-sm-12 px-0">
+        <div class="program text-center">
+            <p>Program:</p>
+            <h4 class="title">GVT</h4>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 px-0">
+        <div class="program text-center">
+            <p>Category:</p>
+            <h4>Hypertrophy</h4>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 px-0">
+        <div class="program text-center">
+            <p>Period:</p>
+            <h4>01.06.18 ~ 31.07.18</h4>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 px-0">
+        <div class="program text-center">
+            <a href=""><span>+</span>Add PT</a>
+        </div>
+    </div>
+</div>
+<div class="row no-gutters text-center" *ngIf="type!='program'">
+    <div class="col-12 col-sm-6 px-0">
+        <div class="test">
+            <p class="title">1RM Pretest (kg):</p>
+            <p><b>100</b></p>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 px-0">
+        <div class="test">
+            <p class="title">1RM Posttest (kg):</p>
+            <p><b>108</b></p>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 px-0">
+        <div class="graph">
+            <p><b>1RM Results:</b><br>(% increase)</p>
+            <div class="gauge-container">
+                <osg-gauge css="{{color}} no-circle" [value]="value"></osg-gauge>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 px-0">
+        <div class="test">
+            <p class="title">Pretest (level):</p>
+            <p><b>Intermediate</b></p>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 px-0">
+        <div class="test">
+            <p class="title">Posttest (level):</p>
+            <p><b>Intermediate</b></p>
+        </div>
+    </div>
+</div>

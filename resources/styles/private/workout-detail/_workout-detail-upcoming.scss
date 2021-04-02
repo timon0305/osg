@@ -1,0 +1,238 @@
+osg-workout-detail-upcoming {
+	.card {
+		border: none;
+		font-family: $third-font;
+		box-shadow: 0px 0px 15px 0px rgba(61, 47, 12, 0.15);
+		.card-header {
+			padding: 15px;
+			background: #000;
+			display: flex;
+			.time-block {
+				display: flex;
+				img {
+					width: 25px;
+					height: 25px;
+					@media screen and (max-width:320px) {
+						width: 20px;
+						height: 20px;
+					}
+				}
+				p {
+					color: #fff;
+					margin-left: 5px;
+					margin-bottom: 0;
+					@media screen and (max-width:320px) {
+						font-size: 14px;
+					}
+				}
+			}
+			.status {
+			    display: flex;
+			    position: absolute;
+				right: 15px;
+				p {
+					margin-bottom: 0;
+					text-transform: uppercase;
+					font-size: 14px;
+					@media screen and (max-width:320px) {
+						font-size: 11px;
+						padding-top: 4px;
+					}
+					&.upcoming {
+						color: #ffb20d;
+					}
+					
+					&.in-progress {
+						color: #ff720a;
+					}
+					&.complete {
+						color: #92b507;
+						span {
+							svg {
+								width: 12px;
+							}
+						}
+					}
+					&.edit-set {
+						color: #909090;
+						margin-right: 5px;
+						span {
+							svg {
+								width: 12px;
+							}
+						}
+					}
+				}
+			}
+		}
+		.card-body {
+			padding: 15px;
+			.main-body {
+				.main-info {
+					display: flex;
+					.responsive-img {
+						img {
+							width: 60px;
+						}
+					}
+					.info-texts {
+					    padding-top: 7px;
+						padding-left: 10px;
+						p {
+							margin-bottom: 0;
+							font-size: 13px;
+						}
+						h6 {
+							margin-bottom: 0;
+							color: #ffb20d;
+							font-size: 14px;
+						}
+					}
+					span {
+						color: #000;
+						font-size: 14px;
+						text-transform: uppercase;
+						&.caret {
+							float: right;
+							border-radius: 50%;
+							background-image: linear-gradient(to bottom right, #ff8d00, #ffb20d);
+							color: #c29834;
+							width: 40px;
+							height: 40px;
+							position: absolute;
+							right: 15px;
+							margin-top: 12px;
+							transform: rotate(0deg);
+							transition: all 0.3s ease-Out;
+							-moz-transition: all 0.3s ease-Out;
+							-o-transition: all 0.3s ease-Out;
+							-webkit-transition: all 0.3s ease-Out;
+							i {
+								font-size: 25px;
+								position: relative;
+								left: 13px;
+								top: 6px;
+								color: #000;
+							}
+							&.collapsed {
+								transform: rotate(180deg);
+							}
+						}
+					}
+				}
+			}
+			.detail-body {
+				margin-top: 15px;
+				border-top: 1px solid #cecece;
+				padding-top: 15px;
+				.detail-method {
+					display: flex;
+					.method-type {
+						p {
+							color: #646464;
+							margin-bottom: 0;
+							text-transform: uppercase;
+							font-size: 13px;
+							@media screen and (max-width:320px) {
+								font-size: 10px;
+							}
+						}
+					}
+					.method-value {
+					    position: absolute;
+						right: 15px;
+						text-align: right;
+						p {
+							color: #000;
+							font-size: 13px;
+							text-transform: uppercase;
+							margin-bottom: 0;
+							@media screen and (max-width:320px) {
+								font-size: 10px;
+							}
+						}
+					}
+				}
+				.detail-progress {
+					border-top: 1px solid #cecece;
+					padding-top: 20px;
+					margin-top: 15px;
+					.progress-form {
+						display: flex;
+						margin-bottom: 10px;
+						.form-title {
+							width: 30%;
+							p {
+								color: #646464;
+								text-transform: uppercase;
+								font-size: 11px;
+								padding-top: 20px;
+								@media screen and (max-width:320px) {
+									font-size: 9px;
+								}
+							}
+							svg {
+								width: 10px;
+								margin-left: 10px;
+								color: #92b507;
+								@media screen and (max-width: 320px) {
+									width: 9px;
+									margin-left: 5px;
+								}
+							}
+						}
+						.form-value {
+							width: 70%;
+							div {
+								width: 33.33%;
+								display: inline-block;
+								p {
+									margin-bottom: 0;
+									font-size: 12px;
+									color: #646464;
+									text-align: center;
+									@media screen and (max-width: 320px) {
+										font-size: 10px;
+									}
+									&.amount-num {
+										font-size: 15px;
+										color: #000;
+										@media screen and (max-width: 320px) {
+											font-size: 13px;
+										}
+									}
+								}
+							}
+						}
+					}
+					.progress-form-set {
+						.form-buttons {
+							display: flex;
+							margin-top: 30px;
+							.single-button {
+								width: 48%;
+								text-align: center;
+								padding-top: 6px;
+								padding-bottom: 6px;
+								text-transform: uppercase;
+								border-radius: 3px;
+								@media screen and (max-width:320px) {
+									font-size: 14px;
+								}
+								&.skip {
+									border: 1px solid #575757;
+									margin-right: 10px;
+								}
+								&.finish {
+									margin-left: 10px;
+									background: #92b507;
+									color: #fff;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

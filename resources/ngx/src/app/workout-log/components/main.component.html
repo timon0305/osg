@@ -1,0 +1,174 @@
+<div class="header">
+    <div class="detail-info">
+        <div class="detail-info-title">
+            <h4>Calendar & Workout Log</h4>
+            <h5>In progress: German Volume Training</h5>
+        </div>
+        <div class="detail-text-group">
+            <div class="detail-text">
+                <h4><span>25</span><span class="detail-explain">Sessions<br>completed</span></h4>
+            </div>
+            <div class="detail-text">
+                <h4><span>70</span><span class="detail-explain">Total<br> sessions</span></h4>
+            </div>
+            <div class="detail-text">
+                <h4><span>36%</span><span class="detail-explain">of program<br>completed</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="calendar">
+        <div class="week-days">
+            <div class="date">Sun</div>
+            <div class="date">Mon</div>
+            <div class="date">Tue</div>
+            <div class="date">Wed</div>
+            <div class="date">Thu</div>
+            <div class="date">Fri</div>
+            <div class="date">Sat</div>
+        </div>
+        <div class="wrapper-weeks">
+            <div class="week">
+                <div class="day">
+                    <div><span class="time">30</span></div>
+                </div>
+                <div class="day completed test" (click)="showWorkout('Monday, April 31', 'completed')">
+                    <div><span class="time">31</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">1</span></div>
+                </div>
+                <div class="day completed test" (click)="showWorkout('Wednesday, May 2', 'completed')">
+                    <div><span class="time">2</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">3</span></div>
+                </div>
+                <div class="day completed test" (click)="showWorkout('Friday, May 4', 'completed')">
+                    <div><span class="time">4</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">5</span></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="day">
+                    <div><span class="time">6</span></div>
+                </div>
+                <div class="day missed" (click)="showWorkout('Monday, May 7', 'missed')">
+                    <div><span class="time">7</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">8</span></div>
+                </div>
+                <div class="day completed" (click)="showWorkout('Wednesday, May 9', 'completed')">
+                    <div><span class="time">9</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">10</span></div>
+                </div>
+                <div class="day completed" (click)="showWorkout('Friday, May 11', 'completed')">
+                    <div><span class="time">11</span></div>
+                </div>
+                <div class="day today">
+                    <div><span class="time">12</span></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="day">
+                    <div><span class="time">13</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Monday, May 14', 'upcoming')">
+                    <div><span class="time">14</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">15</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Wednesday, May 16', 'upcoming')">
+                    <div><span class="time">16</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">17</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Friday, May 18', 'upcoming')">
+                    <div><span class="time">18</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">19</span></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="day">
+                    <div><span class="time">20</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Monday, May 21', 'upcoming')">
+                    <div><span class="time">21</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">22</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Wednesday, May 23', 'upcoming')">
+                    <div><span class="time">23</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">24</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Friday, May 25', 'upcoming')">
+                    <div><span class="time">25</span></div>
+                </div>
+                <div class="day">
+                    <div><span class="time">26</span></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="day">
+                    <div><span class="time">27</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Monday, May 28', 'upcoming')">
+                    <div>
+                        <span class="time">28</span>
+                    </div>
+                </div>
+                <div class="day">
+                    <div><span class="time">29</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Wednesday, May 30', 'upcoming')">
+                    <div>
+                        <span class="time">30</span>
+                    </div>
+                </div>
+                <div class="day">
+                    <div><span class="time">31</span></div>
+                </div>
+                <div class="day upcoming" (click)="showWorkout('Friday, Jun 1', 'upcoming')">
+                    <div>
+                        <span class="time">1</span>
+                    </div>
+                </div>
+                <div class="day">
+                    <div><span class="time">2</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="workout">
+        <div class="workout-title">
+            <p class="text-uppercase">today's workout:</p>
+        </div>
+        <div class="workout-item">
+            <div class="workout-item-text">
+                <div class="workout-item-status">
+                    <p class="date-status"><span>{{today}}</span></p>
+                    <p class="item-type">Chest, Shoulders & Trcipes</p>
+                    <p class="item-title">German Volume Training</p>
+                </div>
+            </div>
+            <div class="workout-item-button">
+                <a class="start_btn" (click)="start(today)">Start</a>
+                <a class="edit_btn" (click)="edit(today)"><img src="assets/images/icons/eye.png"></a>
+            </div>
+        </div>
+    </div>
+</div>

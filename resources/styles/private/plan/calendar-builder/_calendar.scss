@@ -1,0 +1,137 @@
+osg-plan-builder-calendar {
+    @extend .col;
+    @extend .col-md-4;
+	@media (min-width: 320px) {
+		flex-basis: auto;
+		max-width: 100%;
+	}
+	@media (min-width: 1280px) {
+		max-width: 50%;
+	}
+    .subtitle{
+        border-left: solid 1px #d8ddd1;
+        border-right: solid 1px #d8ddd1;
+        border-bottom: solid 1px #d8ddd1;
+        display: block;
+        padding: 30px 15px 35px;
+    }
+    h3{
+        @include section-title(rem(16));
+        font-family: $fourth-font;
+        font-weight: bold;
+    }
+    .workouts-list{
+        padding: 10px 15px 0px;
+        border-bottom: solid 1px #d8ddd1;
+        border-left: solid 1px #d8ddd1;
+        border-right: solid 1px #d8ddd1;
+        .workout{
+            @include section-title(rem(14));
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-family: $fourth-font;
+            span{
+                color: #000;
+                background: $yellow;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                line-height: 30px;
+                text-align: center;
+                display: inline-block;
+            }
+            p{
+                color: #838383;
+                margin-bottom: 0px;
+                font-family: $fourth-font;
+                font-size: 14px;
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+    }
+    .table-responsive{
+        height: 522px;
+        overflow-x: inherit;
+		overflow-y: auto;
+    }
+    table{
+        margin-bottom: 0px;
+        thead{
+            tr{
+                &:first-child{
+                    th{
+                        border-top: none;
+                    }
+                }
+                th{
+                    border: solid 1px #d8ddd1;
+                    font-family: $fourth-font;
+                    font-weight: bold;
+                    font-size: rem(14);
+                    text-transform: uppercase;
+                    text-align: center;
+                    vertical-align: middle;
+					padding: 15px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    border: solid 1px #d8ddd1;
+                    font-family: $fourth-font;
+                    font-size: rem(14);
+                    padding: 0.874rem;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                    text-align: left;
+                    span{
+                        color: #000;
+                        background: $yellow!important;
+                        width: 30px;
+                        height: 30px;
+                        font-weight: bold;
+                        border-radius: 100%;
+                        line-height: 30px;
+                        text-align: center;
+                        display: inline-block;
+                    }
+                }
+                &:last-child{
+                    td{
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+    .actions{
+        display: block;
+        padding: 20px 15px 20px;
+        background: #FFF;
+        border-bottom: solid 2px #a9a9a9;
+        .btn{
+            font-size: rem(14);
+            font-family: $fourth-font;
+            font-weight: bold;
+            letter-spacing: 0;
+            span{
+                display: inline-block;
+                background: $yellow;
+                width: 13px;
+                height: 13px;
+                border-radius: 100%;
+                text-align: center;
+                line-height: 13px;
+                color: #000;
+            }
+            img{
+                width: 13px;
+            }
+            &.btn-gray{
+                margin-left: 10px;
+            }
+        }
+    }
+}

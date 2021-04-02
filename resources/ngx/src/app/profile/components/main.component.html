@@ -1,0 +1,4 @@
+<osg-profile-cover *ngIf="applicationUser" [applicationUser]="applicationUser"></osg-profile-cover>
+<osg-personal-trainer *ngIf="isFriend() && isPersonalTrainer()" [applicationUser]="applicationUser"></osg-personal-trainer>
+<osg-program-designer *ngIf="isFriend() && isProgramDesigner()" [applicationUser]="applicationUser"></osg-program-designer>
+<osg-strength-athlete *ngIf="isFriend() && isStrengthAthlete()" [applicationUser]="applicationUser"></osg-strength-athlete>

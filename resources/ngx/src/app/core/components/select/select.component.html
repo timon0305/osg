@@ -1,0 +1,12 @@
+<!-- <div class="dropdown black-dropdown with-label">
+    
+</div> -->
+
+<label for="">{{label}}</label>
+<button class="btn dropdown-toggle btn-block" type="button" (click)="toggle()">{{selection}}<img src="/images/information-ikon.png" placement="left" [ngbPopover]="popContent" *ngIf="type == 'level'" (click)="popup()"/></button>
+<ng-template #popContent>
+    You can calculate your level on a desired test exercise under Strength standards   
+</ng-template>
+<div class="dropdown-menu" [ngClass]="{'show': open}" aria-labelledby="dropdownMenuButton1">
+    <a *ngFor="let option of options" class="dropdown-item" (click)="select(option)">{{option}}</a>
+</div>

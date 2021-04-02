@@ -1,0 +1,30 @@
+.rating{
+    font-size: 10px;
+    color: #b7b7b7;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+    span{
+        color: #b7b7b7;
+        &.excellent{
+            color: #4b870a;
+        }
+        &.good{
+            color: $dark-green;
+        }
+        &.middle{
+            color: $orange;
+        }
+        &.worse{
+            color: #ff4700;
+        }
+        &.worst{
+            color: #980000;
+        }
+    }
+    p{
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}

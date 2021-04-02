@@ -1,0 +1,23 @@
+<div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-12 col-sm-12 col-md-7 col-lg-4">
+            <div class="information">
+                <a href="" class="edit"><img src="/assets/images/icons/icon-pencil.svg" class="img-fluid" alt=""></a>
+                <figure>
+                    <img [src]="avatar" class="img-fluid d-block m-auto" [ngStyle]="{'width': isdefault ? '25%' : '100%' }"/>
+                </figure>
+                <h2>{{fullName}}</h2>
+                <div [ngSwitch]="isfriend">
+                  <a (click)="requestFriend()" *ngSwitchCase="0" class="add-friend">
+                    <img src="/assets/images/icons/icon-add-friend.png" class="d-inline-block img-fluid mr-2" alt="">
+                    ADD FRIEND
+                  </a>
+                  <a *ngSwitchCase="1" class="request-friend">
+                    <img src="/assets/images/icons/icon-add-friend.png" class="d-inline-block img-fluid mr-2" alt="">
+                    Pending
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

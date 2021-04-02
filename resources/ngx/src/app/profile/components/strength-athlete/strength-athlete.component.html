@@ -1,0 +1,18 @@
+<div [ngClass]="current_set=='profile'?'active slide_page':'slide_page'">
+    <a class="slide_button next" (click)="NextPage()">
+        <img src="images/icons/arrow-right.png">
+    </a>
+    <osg-profile-about-me profile="Strength Athlete" [experience]="applicationUser.profile?applicationUser.profile.experience:'Sample experience text'" [interests]="applicationUser.profile?applicationUser.profile.interest:'Sample interest text'" [text]="applicationUser.profile?applicationUser.profile.description:'Sample description text'" [country]="applicationUser.profile?applicationUser.profile.country:'Sample country text'" [email]="applicationUser.profile.email"></osg-profile-about-me>
+    <osg-news-feed [applicationUser]="applicationUser"></osg-news-feed>
+</div>
+<div [ngClass]="current_set=='graph'?'active slide_page':'slide_page'">
+    <a class="slide_button prev" (click)="PreviousPage()">
+        <img src="images/icons/arrow-left.png">
+    </a>
+    <osg-strength-athlete-trophy-wall></osg-strength-athlete-trophy-wall>
+    <osg-strength-athlete-timeline></osg-strength-athlete-timeline>
+    <osg-strength-athlete-performance-table [applicationUser]="applicationUser"></osg-strength-athlete-performance-table>
+    <osg-strength-athlete-top-program-designs></osg-strength-athlete-top-program-designs>
+    <osg-strength-athlete-training-calendar></osg-strength-athlete-training-calendar>
+    <osg-get-started view="tertiary" [sections]="getStartedSections"></osg-get-started>
+</div>

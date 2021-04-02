@@ -1,0 +1,482 @@
+osg-strength-athlete-trophy-wall {
+    display: block;
+
+    h3 {
+        @include section-title;
+        float: left;
+    }
+
+    h4 {
+        text-transform: uppercase;
+        color: #000;
+        font-family: $fourth-font;
+        font-size: rem(14);
+        font-weight: bold;
+        margin: 0;
+    }
+
+    p {
+        color: #838383;
+        font-size: rem(14);
+        margin: 0;
+        b {
+            color: #000;
+        }
+    }
+
+    osg-strength-athlete-trophy {
+        display: block;
+        background: #FFF;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        border: 1px solid #dadada;
+		overflow-x: auto;
+		
+		.trophy-wall {
+			width: 1211px;
+			display: flex;
+			flex-wrap: wrap;
+	
+			.strenght-level {
+				display: block;
+				border-right: 1px #dadada solid;
+				height: 100%;
+				padding: 30px 20px;
+				width: 310px;
+				.exercise-list {
+					display: block;
+					margin-top: 15px;
+
+					.list {
+						display: block;
+						margin-top: 15px;
+						height: 360px;
+						overflow: auto;
+
+						.checkbox {
+							color: #838383;
+							font-size: rem(10);
+							margin-bottom: 5px;
+							display: block;
+
+							.checkmark {
+								background: #FFF;
+								border-color: #dadada;
+							}
+
+							label {
+								margin-top: 0px;
+
+								input:checked~.checkmark {
+									border-color: #2ebf0d;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			.performance-graph {
+				display: block;
+				height: 100%;
+				padding-top: 30px;
+				padding-left: 20px;
+				padding-right: 20px;
+				
+				.triple-trophy {
+					position: absolute;
+					@media (min-width: 320px) {
+						right: 143px;
+						top: -20px;
+					}
+					@media (min-width: 768px) {
+						top: 10px;
+					}
+					@media (min-width: 1920px) {
+						top: 0px;
+					}
+					.trophy{
+						width: 25px;
+					}
+				}
+				.c3 svg {
+					font: 12px "Gotham Book";
+					color: #838383;
+				}
+				.c3 {
+					line {
+						stroke: #128cf3;
+						stroke-width: 2;
+					}
+				}
+				.c3-grid {
+					line {
+						stroke: #dadada !important;
+						stroke-width: 1 !important;
+					}
+				}
+				.c3-axis-x {
+					path {
+						stroke: #dadada;
+					}
+				}
+				.c3-xgrid-line {
+					line {
+						stroke: #838383 !important;
+					}
+				}
+				.c3-axis-y {
+					path {
+						stroke: #c1c1c1;
+					}
+				}
+				.c3-axis-y2 {
+					path {
+						stroke: #c1c1c1;
+					}
+				}
+				.descriptions{
+					position: relative;
+					padding-top: 0;
+					> div{
+						width: fit-content;
+						position: absolute;
+						text-align: center;
+						span{
+							display: block;
+							font-size: 14px;
+							color: #838383;
+							&:first-child{
+								color: $light-blue;
+								font-family: $fourth-font;
+							}
+						}
+						&:first-child{					
+							left: 70px;
+							@media (min-width: 1920px) {
+								left: 65px;
+							}
+						}
+
+						&:nth-child(2){
+							left: 230px;
+							@media (min-width: 1920px) {
+								left: 230px;
+							}
+						}
+
+						&:last-child{
+							left: 400px;
+							@media (min-width: 1920px) {
+								left: 405px;
+							}
+						}
+					}
+				}
+				.conventions{
+					//display: block;
+					margin-bottom: 20px;
+					margin-top: 20px;
+					display: flex;
+					/* flex-wrap: wrap; */
+					/* flex-grow: 1; */
+					justify-content: space-evenly;
+					p {
+						color: #838383;
+						font-size: rem(14);
+						display: inline-block;
+						margin-right: 10px;
+						margin-left: 10px;
+						&:first-child{
+							margin-left: 0px;
+						}
+						&:last-child{
+							margin-right: 0px;
+						}
+
+						span {
+							display: inline-block;
+							margin-right: 5px;
+						}
+						&.start-end{
+							span{
+								width: 25px;
+								height: 2px;
+								background: #838383;
+							}
+						}
+						&.performance{
+							span{
+								width: 25px;
+								height: 2px;
+								background: #ffa500;
+							}
+						}
+						&.levels{
+							span{
+								width: 25px;
+								height: 2px;
+								background: #dadada;
+							}
+						}
+						&.pretest{
+							span{
+								width: 10px;
+								height: 10px;
+								background: #FFF;
+								border: solid 3px #86d531;
+								border-radius: 100%;
+								position: relative;
+								&:after{
+									content: "";
+									border: solid 1px #86d531;
+									display: block;
+									position: absolute;
+									top: -6px;
+									left: -6px;
+									border-radius: 100%;
+									width: 16px;
+									height: 16px;
+								}
+							}
+						}
+						&.posttest{
+							span{
+								width: 10px;
+								height: 10px;
+								background: #FFF;
+								border: solid 3px #ff0000;
+								border-radius: 100%;
+								position: relative;
+								&:after{
+									content: "";
+									border: solid 1px #ff0000;
+									display: block;
+									position: absolute;
+									top: -6px;
+									left: -6px;
+									border-radius: 100%;
+									width: 16px;
+									height: 16px;
+								}
+							}
+						}
+					}
+				}
+
+
+				svg{
+					.pretest{
+						stroke: #86d531;
+						fill: transparent !important;
+						&.extra{
+							stroke-width: 3px;
+						}
+					}
+					.posttest{
+						stroke: #ff0000;
+						fill: transparent !important;
+						&.extra{
+							stroke-width: 3px;
+						}
+					}
+				}
+			}
+			
+			.total-percentage {
+				display: block;
+				border-left: 1px #dadada solid;
+				height: 485px;
+				padding-top: 30px;
+				width: 310px;
+				
+				.title{
+					padding: 0px 15px;
+				}
+				.program-period{
+					display: block;
+					border-top: 1px #dadada solid;
+					padding: 20px;
+				}
+
+				.gauge-container{
+					width: 100%;
+					height: 100%;
+					display: flex;
+					margin-top: 2rem;
+					osg-gauge{
+						width: 60%;
+						display: block;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+
+        .current-level {
+            display: block;
+            border-top: 2px #dadada solid;
+            padding: 0px;
+			.no-gutters {
+				@media (max-width: 767.98px) {
+					display: flex! important;
+				}
+			}
+			.col-sm-auto {
+				@media (max-width: 767.98px) {
+					-webkit-box-flex: 0;
+					flex: 0 0 auto;
+					width: auto;
+					max-width: none;
+				}
+			}
+			.col-sm {
+				@media (max-width: 767.98px) {
+					flex-basis: 0;
+					-webkit-box-flex: 1;
+					flex-grow: 1;
+					max-width: 100%;
+				}
+			}
+            .title{
+                padding-top: 30px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .level {
+                display: block;
+                height: 100%;
+                text-align: center;
+                border-left: 1px #dadada solid;
+                padding: 20px 5px;
+
+                .gauge-container{
+                    display: block;
+                    margin: 0 auto 15px;
+                    osg-gauge{
+                        width: 60%;
+                        display: block;
+                        margin: 0 auto;
+                    }
+                }
+
+                p{
+                    font-size: rem(14);
+                    line-height: rem(18);
+                }
+
+                &.no-border{
+                    border: none;
+                }
+                &.yellow-bg{
+                    background: #fff6e1;
+                }
+            }
+        }
+		@media (min-width: 320px) {
+			.trophy-wall {
+				width: 1190px;
+				.strenght-level {
+					padding: 20px 10px 0px 10px;
+					width: 210px;
+					.exercise-list {
+						.list {
+							.checkbox {
+								label {
+									font-size: 14px;
+								}
+							}
+						}
+					}
+				}
+				.performance-graph {
+					padding: 20px 10px 0px 10px;
+					.descriptions {
+						height: 20px;
+					}
+					.conventions {
+						margin-top: 25px;
+						margin-bottom: 10px;
+						@media (max-width: 480px) {
+							margin-top: 57px;
+						}
+					}
+				}
+				.total-percentage {
+					height: 475px;
+				}
+				.guage-box {
+					padding-left: 0;
+					padding-right: 0;
+					.current-level {
+						.guage-items {
+							padding-left: 0;
+							padding-right: 0;
+							.level {
+								padding: 10px 5px;
+								.gauge-container {
+									osg-gauge {
+										width: 35%;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: 1280px) {
+			.trophy-wall {
+				width: 1280px;
+				.strenght-level {
+					padding: 30px 20px;
+					width: 310px;
+					.exercise-list {
+						.list {
+							.checkbox {
+								label {
+									font-size: rem(14);
+								}
+							}
+						}
+					}
+				}
+				.performance-graph {
+					padding: 30px 10px 0px 10px;
+					.descriptions {
+						height: 50px;
+					}
+					.conventions {
+						margin-top: 50px;
+						margin-bottom: 10px;
+					}
+				}
+				.total-percentage {
+					height: 485px;
+				}
+				.guage-box {
+					padding-left: 0;
+					padding-right: 0;
+					.current-level {
+						.guage-items {
+							padding-left: 0;
+							padding-right: 0;
+							.level {
+								padding: 10px 5px;
+								.gauge-container {
+									osg-gauge {
+										width: 60%;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: 1920px) {
+			overflow-x: unset;
+		}
+    }
+}

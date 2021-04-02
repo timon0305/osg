@@ -1,0 +1,56 @@
+<div class="title">
+  <div class="row align-items-center">
+    <div class="col-12 col-sm-8">
+      <h3>SAVED PROGRAMS</h3>
+    </div>
+    <div class="col-12 col-sm-4 item-group">
+        <div class="control-slider">
+            <a (click)="onPrevPage()" class="btn-control prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            <a (click)="onNextPage()" class="btn-control next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table fashow-improper">
+        <thead>
+            <tr>
+                <th width="16.67%">PROGRAM:</th>
+                <th *ngFor="let program of showingPrograms; let i = index;">
+                  <a [attr.href]="'/#/calendar-builder?program_id='+program.id" (click)="setProgram(i)">{{program.name}}</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="16.67%">SAVED DATE:</td>
+                <td *ngFor="let program of showingPrograms; let i = index;">{{program.updated_at}}</td>
+            </tr>
+            <tr>
+                <td width="16.67%">NO. OF COMPLETIONS:</td>
+                <td *ngFor="let program of showingPrograms; let i = index;"></td>
+            </tr>
+            <tr>
+                <td width="16.67%">Length (Weeks):</td>
+                <td *ngFor="let program of showingPrograms; let i = index;"></td>
+            </tr>
+            <tr>
+                <td width="16.67%">CATEGORY: </td>
+                <td *ngFor="let program of showingPrograms; let i = index;">{{program.category}}</td>
+            </tr>
+            <tr>
+                <td width="16.67%">TRAINING SPLIT:</td>
+                <td *ngFor="let program of showingPrograms; let i = index;">{{program.split}}</td>
+            </tr>
+            <tr>
+              <td width="16.67%">Workouts per week:</td>
+              <td *ngFor="let program of showingPrograms; let i = index;">{{program.workouts}}</td>
+            </tr>
+            <tr>
+              <td width="16.67%">Description:</td>
+              <td *ngFor="let program of showingPrograms; let i = index;">{{program.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,52 @@
+<div class="title">
+  <div class="row">
+    <div class="col-12">
+      <h3>PROGRESSIVE OVERLOAD GRAPH: <span>{{first_program.name}}</span></h3>
+    </div>
+  </div>
+</div>
+<div class="graph">
+    <div [id]="progressiveOverloadGraphId"></div>
+    <div class="week-types">
+      <div class="article_type">
+          <p>Type of week:</p>
+      </div>
+      <div *ngFor="let week of rendered_weeks; let ind = index;" [style.width.%] = "100/rendered_weeks.length">
+        <div>
+            <span>Week {{graph_page_num+ind+1}}</span>
+            <span>{{week_types[graph_page_num+ind]}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="conventions">
+        <div class="dropdown">
+            <p>Body part:</p>
+            <button class="btn btn-border dropdown-toggle btn-block" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: rgb(181, 239, 255);">{{graph_data.length?graph_data[cur_index].name:''}}</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <a *ngFor="let data of graph_data; let i = index" class="dropdown-item" (click)="cur_index=i">{{data.name}}</a>
+            </div>
+        </div>
+        <p class="volume"><span></span>Total volume (set x reps)</p>
+        <p class="intensity"><span></span>Average intensity (% of 1 RM)</p>
+        <p class="volume-load"><span></span>Total volume load (set x reps x load)</p>
+        <p class="frequency"><span></span>Frequency (sessions per week)</p>
+        <div class="control-slider">
+            <a (click)="onGraphPrev()" class="btn-control prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            <a (click)="onGraphNext()" class="btn-control next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <ng-template #popTitle4Set>
+      -Straight set: is an ordinary set where you do a set of one exercise, rest and proceed to the next set.<br>
+      -Warm up set: perform one or several sets with low weight and intensity prior to your work sets.<br>
+      -Tets AMRAP set: is a test setwhere you perform as many reps as possible with maximum effort, used to calculate your one repetition maximum (1 RM).<br>
+      -Pyramide set: is a collection of sets, of the same exercise, that starts with a light weight and higher reps, building up to heavier weight and fewer reps, or vice versa.<br>
+      -Super set: when doing two exercises that target opposing muscles in a row with minimal rest between them.<br>
+      -Giant set: is a circuit of three or more exercises for the same muscle group performed one after another with little to no rest in between.<br>
+      -Pre-exhaust set: when doing an isolation or single-joint exercise followed by one compound or multiple-joint movement.<br>
+      -Drop set: performing multiple sets of an exercise to technical failure with successively lighter loads and little to no rest
+    </ng-template>
+    <i class="fa fa-info-circle"
+       placement="bottom"
+       [ngbPopover]="popTitle4Set"
+       style="font-size: 24px;cursor: pointer"></i>
+</div>
